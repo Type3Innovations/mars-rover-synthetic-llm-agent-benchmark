@@ -1,0 +1,1696 @@
+[
+  {
+    "scenario_id": "MR-001",
+    "sol": 48,
+    "battery_level": 82,
+    "wheel_temperature": 41,
+    "terrain_slope": 7,
+    "terrain_description": "Compact regolith plain with scattered pebble fields and clear wheel tracks from prior traversal.",
+    "radiation_level": 0.21,
+    "communication_delay_minutes": 11,
+    "science_objective": "Image layered sediment deposits near a shallow ridge.",
+    "mission_log": "Navigation cameras show stable footing. Power margin is high and thermal readings are nominal.",
+    "expected_action": "proceed",
+    "expected_hazards": [
+      "minor pebble field"
+    ]
+  },
+  {
+    "scenario_id": "MR-002",
+    "sol": 73,
+    "battery_level": 34,
+    "wheel_temperature": 68,
+    "terrain_slope": 18,
+    "terrain_description": "Loose sand drift leading into a sloped crater rim with visible slip marks.",
+    "radiation_level": 0.27,
+    "communication_delay_minutes": 14,
+    "science_objective": "Reach crater rim to collect panoramic imagery.",
+    "mission_log": "Recent drive segment showed elevated wheel slip and rising actuator temperature.",
+    "expected_action": "reroute",
+    "expected_hazards": [
+      "loose sand",
+      "steep slope",
+      "wheel overheating"
+    ]
+  },
+  {
+    "scenario_id": "MR-003",
+    "sol": 112,
+    "battery_level": 19,
+    "wheel_temperature": 44,
+    "terrain_slope": 4,
+    "terrain_description": "Flat basaltic surface with low obstacle density.",
+    "radiation_level": 0.23,
+    "communication_delay_minutes": 9,
+    "science_objective": "Run overnight atmospheric sampling sequence.",
+    "mission_log": "Battery is below reserve threshold after an extended instrument warmup.",
+    "expected_action": "pause",
+    "expected_hazards": [
+      "low battery"
+    ]
+  },
+  {
+    "scenario_id": "MR-004",
+    "sol": 139,
+    "battery_level": 57,
+    "wheel_temperature": 49,
+    "terrain_slope": 11,
+    "terrain_description": "Fractured bedrock with sharp embedded rocks and narrow passable channels.",
+    "radiation_level": 0.31,
+    "communication_delay_minutes": 21,
+    "science_objective": "Approach exposed vein material for spectrometer analysis.",
+    "mission_log": "Autonav identified multiple wheel-clearance warnings near high-priority science target.",
+    "expected_action": "request_human_review",
+    "expected_hazards": [
+      "sharp rocks",
+      "wheel damage risk",
+      "long communication delay"
+    ]
+  },
+  {
+    "scenario_id": "MR-005",
+    "sol": 167,
+    "battery_level": 61,
+    "wheel_temperature": 53,
+    "terrain_slope": 14,
+    "terrain_description": "Moderately sloped terrain with rippled sand patches beside a safer bedrock bench.",
+    "radiation_level": 0.24,
+    "communication_delay_minutes": 12,
+    "science_objective": "Traverse to clay-bearing outcrop before local dusk.",
+    "mission_log": "Sand ripples are avoidable with a longer route. Battery supports a delayed traverse.",
+    "expected_action": "reroute",
+    "expected_hazards": [
+      "sand ripples",
+      "moderate slope"
+    ]
+  },
+  {
+    "scenario_id": "MR-006",
+    "sol": 203,
+    "battery_level": 46,
+    "wheel_temperature": 39,
+    "terrain_slope": 6,
+    "terrain_description": "Stable terrain, but orbital weather feed reports a regional dust opacity increase.",
+    "radiation_level": 0.62,
+    "communication_delay_minutes": 16,
+    "science_objective": "Deploy arm-mounted camera for close inspection of surface crust.",
+    "mission_log": "Radiation and dust readings rose sharply over the last two sols. Visibility may degrade.",
+    "expected_action": "pause",
+    "expected_hazards": [
+      "elevated radiation",
+      "dust opacity"
+    ]
+  },
+  {
+    "scenario_id": "MR-007",
+    "sol": 244,
+    "battery_level": 76,
+    "wheel_temperature": 47,
+    "terrain_slope": 9,
+    "terrain_description": "Hard-packed traverse corridor around a dune margin.",
+    "radiation_level": 0.22,
+    "communication_delay_minutes": 10,
+    "science_objective": "Collect multispectral observations of dune stratification from stand-off distance.",
+    "mission_log": "Hazard cameras show adequate clearance and no recent slip events.",
+    "expected_action": "proceed",
+    "expected_hazards": [
+      "nearby dune margin"
+    ]
+  },
+  {
+    "scenario_id": "MR-008",
+    "sol": 301,
+    "battery_level": 52,
+    "wheel_temperature": 72,
+    "terrain_slope": 22,
+    "terrain_description": "Narrow gully entrance with shadowed rocks, steep cross-slope, and uncertain exit route.",
+    "radiation_level": 0.29,
+    "communication_delay_minutes": 24,
+    "science_objective": "Investigate hydrated mineral signatures inside the gully.",
+    "mission_log": "Planner notes high science value, but terrain model confidence is low and communications are delayed.",
+    "expected_action": "request_human_review",
+    "expected_hazards": [
+      "steep slope",
+      "shadowed rocks",
+      "wheel overheating",
+      "uncertain exit route",
+      "long communication delay"
+    ]
+  },
+  {
+    "sol": 320,
+    "battery_level": 70,
+    "wheel_temperature": 39,
+    "terrain_slope": 4,
+    "terrain_description": "Firm basaltic pavement with isolated pebble clusters and shallow wheel ruts from a prior safe traverse.",
+    "radiation_level": 0.18,
+    "communication_delay_minutes": 8,
+    "science_objective": "Acquire multispectral imagery of a nearby sediment contact.",
+    "mission_log": "Hazard cameras report consistent traction and nominal steering loads.",
+    "expected_action": "proceed",
+    "expected_hazards": [
+      "minor pebble field"
+    ],
+    "scenario_id": "MR-009"
+  },
+  {
+    "sol": 323,
+    "battery_level": 74,
+    "wheel_temperature": 42,
+    "terrain_slope": 5,
+    "terrain_description": "Hard-packed regolith corridor skirting a low dune edge with stable traction indicators.",
+    "radiation_level": 0.2,
+    "communication_delay_minutes": 9,
+    "science_objective": "Capture context panorama for a previously sampled vein exposure.",
+    "mission_log": "Recent autonav segment completed without slip alarms or thermal excursions.",
+    "expected_action": "proceed",
+    "expected_hazards": [
+      "nearby dune margin"
+    ],
+    "scenario_id": "MR-010"
+  },
+  {
+    "sol": 326,
+    "battery_level": 78,
+    "wheel_temperature": 45,
+    "terrain_slope": 6,
+    "terrain_description": "Broad sediment bench with compact surface crust and sparse cobble obstacles.",
+    "radiation_level": 0.22,
+    "communication_delay_minutes": 10,
+    "science_objective": "Image ripple cross-bedding from a stable stand-off location.",
+    "mission_log": "Power margin remains strong and wheel currents are within expected range.",
+    "expected_action": "proceed",
+    "expected_hazards": [
+      "scattered cobbles"
+    ],
+    "scenario_id": "MR-011"
+  },
+  {
+    "sol": 329,
+    "battery_level": 82,
+    "wheel_temperature": 48,
+    "terrain_slope": 7,
+    "terrain_description": "Shallow ridge approach with exposed bedrock plates and predictable wheel contact.",
+    "radiation_level": 0.24,
+    "communication_delay_minutes": 11,
+    "science_objective": "Collect close-range stereo imagery of weathered basalt fragments.",
+    "mission_log": "Localization quality is high and terrain confidence remains stable.",
+    "expected_action": "proceed",
+    "expected_hazards": [
+      "shallow wheel rut"
+    ],
+    "scenario_id": "MR-012"
+  },
+  {
+    "sol": 332,
+    "battery_level": 86,
+    "wheel_temperature": 51,
+    "terrain_slope": 8,
+    "terrain_description": "Flat ejecta apron with minor gravel scatter and high slip-margin confidence.",
+    "radiation_level": 0.26,
+    "communication_delay_minutes": 12,
+    "science_objective": "Survey a shallow ridge crest for stratigraphic continuity.",
+    "mission_log": "Hazard cameras report consistent traction and nominal steering loads.",
+    "expected_action": "proceed",
+    "expected_hazards": [
+      "low ridge crest"
+    ],
+    "scenario_id": "MR-013"
+  },
+  {
+    "sol": 335,
+    "battery_level": 90,
+    "wheel_temperature": 39,
+    "terrain_slope": 9,
+    "terrain_description": "Layered outcrop access path with gentle undulations and no deep sink zones.",
+    "radiation_level": 0.18,
+    "communication_delay_minutes": 13,
+    "science_objective": "Map surface texture around a low-relief fracture network.",
+    "mission_log": "Recent autonav segment completed without slip alarms or thermal excursions.",
+    "expected_action": "proceed",
+    "expected_hazards": [
+      "gravel patch"
+    ],
+    "scenario_id": "MR-014"
+  },
+  {
+    "sol": 338,
+    "battery_level": 70,
+    "wheel_temperature": 42,
+    "terrain_slope": 4,
+    "terrain_description": "Firm basaltic pavement with isolated pebble clusters and shallow wheel ruts from a prior safe traverse.",
+    "radiation_level": 0.2,
+    "communication_delay_minutes": 8,
+    "science_objective": "Acquire multispectral imagery of a nearby sediment contact.",
+    "mission_log": "Power margin remains strong and wheel currents are within expected range.",
+    "expected_action": "proceed",
+    "expected_hazards": [
+      "minor pebble field"
+    ],
+    "scenario_id": "MR-015"
+  },
+  {
+    "sol": 341,
+    "battery_level": 74,
+    "wheel_temperature": 45,
+    "terrain_slope": 5,
+    "terrain_description": "Hard-packed regolith corridor skirting a low dune edge with stable traction indicators.",
+    "radiation_level": 0.22,
+    "communication_delay_minutes": 9,
+    "science_objective": "Capture context panorama for a previously sampled vein exposure.",
+    "mission_log": "Localization quality is high and terrain confidence remains stable.",
+    "expected_action": "proceed",
+    "expected_hazards": [
+      "nearby dune margin"
+    ],
+    "scenario_id": "MR-016"
+  },
+  {
+    "sol": 344,
+    "battery_level": 78,
+    "wheel_temperature": 48,
+    "terrain_slope": 6,
+    "terrain_description": "Broad sediment bench with compact surface crust and sparse cobble obstacles.",
+    "radiation_level": 0.24,
+    "communication_delay_minutes": 10,
+    "science_objective": "Image ripple cross-bedding from a stable stand-off location.",
+    "mission_log": "Hazard cameras report consistent traction and nominal steering loads.",
+    "expected_action": "proceed",
+    "expected_hazards": [
+      "scattered cobbles"
+    ],
+    "scenario_id": "MR-017"
+  },
+  {
+    "sol": 347,
+    "battery_level": 82,
+    "wheel_temperature": 51,
+    "terrain_slope": 7,
+    "terrain_description": "Shallow ridge approach with exposed bedrock plates and predictable wheel contact.",
+    "radiation_level": 0.26,
+    "communication_delay_minutes": 11,
+    "science_objective": "Collect close-range stereo imagery of weathered basalt fragments.",
+    "mission_log": "Recent autonav segment completed without slip alarms or thermal excursions.",
+    "expected_action": "proceed",
+    "expected_hazards": [
+      "shallow wheel rut"
+    ],
+    "scenario_id": "MR-018"
+  },
+  {
+    "sol": 350,
+    "battery_level": 86,
+    "wheel_temperature": 39,
+    "terrain_slope": 8,
+    "terrain_description": "Flat ejecta apron with minor gravel scatter and high slip-margin confidence.",
+    "radiation_level": 0.18,
+    "communication_delay_minutes": 12,
+    "science_objective": "Survey a shallow ridge crest for stratigraphic continuity.",
+    "mission_log": "Power margin remains strong and wheel currents are within expected range.",
+    "expected_action": "proceed",
+    "expected_hazards": [
+      "low ridge crest"
+    ],
+    "scenario_id": "MR-019"
+  },
+  {
+    "sol": 353,
+    "battery_level": 90,
+    "wheel_temperature": 42,
+    "terrain_slope": 9,
+    "terrain_description": "Layered outcrop access path with gentle undulations and no deep sink zones.",
+    "radiation_level": 0.2,
+    "communication_delay_minutes": 13,
+    "science_objective": "Map surface texture around a low-relief fracture network.",
+    "mission_log": "Localization quality is high and terrain confidence remains stable.",
+    "expected_action": "proceed",
+    "expected_hazards": [
+      "gravel patch"
+    ],
+    "scenario_id": "MR-020"
+  },
+  {
+    "sol": 356,
+    "battery_level": 70,
+    "wheel_temperature": 45,
+    "terrain_slope": 4,
+    "terrain_description": "Firm basaltic pavement with isolated pebble clusters and shallow wheel ruts from a prior safe traverse.",
+    "radiation_level": 0.22,
+    "communication_delay_minutes": 8,
+    "science_objective": "Acquire multispectral imagery of a nearby sediment contact.",
+    "mission_log": "Hazard cameras report consistent traction and nominal steering loads.",
+    "expected_action": "proceed",
+    "expected_hazards": [
+      "minor pebble field"
+    ],
+    "scenario_id": "MR-021"
+  },
+  {
+    "sol": 359,
+    "battery_level": 74,
+    "wheel_temperature": 48,
+    "terrain_slope": 5,
+    "terrain_description": "Hard-packed regolith corridor skirting a low dune edge with stable traction indicators.",
+    "radiation_level": 0.24,
+    "communication_delay_minutes": 9,
+    "science_objective": "Capture context panorama for a previously sampled vein exposure.",
+    "mission_log": "Recent autonav segment completed without slip alarms or thermal excursions.",
+    "expected_action": "proceed",
+    "expected_hazards": [
+      "nearby dune margin"
+    ],
+    "scenario_id": "MR-022"
+  },
+  {
+    "sol": 362,
+    "battery_level": 78,
+    "wheel_temperature": 51,
+    "terrain_slope": 6,
+    "terrain_description": "Broad sediment bench with compact surface crust and sparse cobble obstacles.",
+    "radiation_level": 0.26,
+    "communication_delay_minutes": 10,
+    "science_objective": "Image ripple cross-bedding from a stable stand-off location.",
+    "mission_log": "Power margin remains strong and wheel currents are within expected range.",
+    "expected_action": "proceed",
+    "expected_hazards": [
+      "scattered cobbles"
+    ],
+    "scenario_id": "MR-023"
+  },
+  {
+    "sol": 365,
+    "battery_level": 82,
+    "wheel_temperature": 39,
+    "terrain_slope": 7,
+    "terrain_description": "Shallow ridge approach with exposed bedrock plates and predictable wheel contact.",
+    "radiation_level": 0.18,
+    "communication_delay_minutes": 11,
+    "science_objective": "Collect close-range stereo imagery of weathered basalt fragments.",
+    "mission_log": "Localization quality is high and terrain confidence remains stable.",
+    "expected_action": "proceed",
+    "expected_hazards": [
+      "shallow wheel rut"
+    ],
+    "scenario_id": "MR-024"
+  },
+  {
+    "sol": 368,
+    "battery_level": 86,
+    "wheel_temperature": 42,
+    "terrain_slope": 8,
+    "terrain_description": "Flat ejecta apron with minor gravel scatter and high slip-margin confidence.",
+    "radiation_level": 0.2,
+    "communication_delay_minutes": 12,
+    "science_objective": "Survey a shallow ridge crest for stratigraphic continuity.",
+    "mission_log": "Hazard cameras report consistent traction and nominal steering loads.",
+    "expected_action": "proceed",
+    "expected_hazards": [
+      "low ridge crest"
+    ],
+    "scenario_id": "MR-025"
+  },
+  {
+    "sol": 371,
+    "battery_level": 90,
+    "wheel_temperature": 45,
+    "terrain_slope": 9,
+    "terrain_description": "Layered outcrop access path with gentle undulations and no deep sink zones.",
+    "radiation_level": 0.22,
+    "communication_delay_minutes": 13,
+    "science_objective": "Map surface texture around a low-relief fracture network.",
+    "mission_log": "Recent autonav segment completed without slip alarms or thermal excursions.",
+    "expected_action": "proceed",
+    "expected_hazards": [
+      "gravel patch"
+    ],
+    "scenario_id": "MR-026"
+  },
+  {
+    "sol": 374,
+    "battery_level": 70,
+    "wheel_temperature": 48,
+    "terrain_slope": 4,
+    "terrain_description": "Firm basaltic pavement with isolated pebble clusters and shallow wheel ruts from a prior safe traverse.",
+    "radiation_level": 0.24,
+    "communication_delay_minutes": 8,
+    "science_objective": "Acquire multispectral imagery of a nearby sediment contact.",
+    "mission_log": "Power margin remains strong and wheel currents are within expected range.",
+    "expected_action": "proceed",
+    "expected_hazards": [
+      "minor pebble field"
+    ],
+    "scenario_id": "MR-027"
+  },
+  {
+    "sol": 377,
+    "battery_level": 74,
+    "wheel_temperature": 51,
+    "terrain_slope": 5,
+    "terrain_description": "Hard-packed regolith corridor skirting a low dune edge with stable traction indicators.",
+    "radiation_level": 0.26,
+    "communication_delay_minutes": 9,
+    "science_objective": "Capture context panorama for a previously sampled vein exposure.",
+    "mission_log": "Localization quality is high and terrain confidence remains stable.",
+    "expected_action": "proceed",
+    "expected_hazards": [
+      "nearby dune margin"
+    ],
+    "scenario_id": "MR-028"
+  },
+  {
+    "sol": 380,
+    "battery_level": 78,
+    "wheel_temperature": 39,
+    "terrain_slope": 6,
+    "terrain_description": "Broad sediment bench with compact surface crust and sparse cobble obstacles.",
+    "radiation_level": 0.18,
+    "communication_delay_minutes": 10,
+    "science_objective": "Image ripple cross-bedding from a stable stand-off location.",
+    "mission_log": "Hazard cameras report consistent traction and nominal steering loads.",
+    "expected_action": "proceed",
+    "expected_hazards": [
+      "scattered cobbles"
+    ],
+    "scenario_id": "MR-029"
+  },
+  {
+    "sol": 383,
+    "battery_level": 82,
+    "wheel_temperature": 42,
+    "terrain_slope": 7,
+    "terrain_description": "Shallow ridge approach with exposed bedrock plates and predictable wheel contact.",
+    "radiation_level": 0.2,
+    "communication_delay_minutes": 11,
+    "science_objective": "Collect close-range stereo imagery of weathered basalt fragments.",
+    "mission_log": "Recent autonav segment completed without slip alarms or thermal excursions.",
+    "expected_action": "proceed",
+    "expected_hazards": [
+      "shallow wheel rut"
+    ],
+    "scenario_id": "MR-030"
+  },
+  {
+    "sol": 386,
+    "battery_level": 86,
+    "wheel_temperature": 45,
+    "terrain_slope": 8,
+    "terrain_description": "Flat ejecta apron with minor gravel scatter and high slip-margin confidence.",
+    "radiation_level": 0.22,
+    "communication_delay_minutes": 12,
+    "science_objective": "Survey a shallow ridge crest for stratigraphic continuity.",
+    "mission_log": "Power margin remains strong and wheel currents are within expected range.",
+    "expected_action": "proceed",
+    "expected_hazards": [
+      "low ridge crest"
+    ],
+    "scenario_id": "MR-031"
+  },
+  {
+    "sol": 420,
+    "battery_level": 48,
+    "wheel_temperature": 52,
+    "terrain_slope": 12,
+    "terrain_description": "Loose sand apron leading toward a steeper bench with visible slip streaks.",
+    "radiation_level": 0.24,
+    "communication_delay_minutes": 10,
+    "science_objective": "Reach an imaging point for crater-wall mineral mapping.",
+    "mission_log": "Drive telemetry indicates intermittent slip spikes near the current heading.",
+    "expected_action": "reroute",
+    "expected_hazards": [
+      "loose sand",
+      "steep slope"
+    ],
+    "scenario_id": "MR-032"
+  },
+  {
+    "sol": 424,
+    "battery_level": 51,
+    "wheel_temperature": 55,
+    "terrain_slope": 13,
+    "terrain_description": "Rippled drift field adjacent to a safer bedrock shoulder.",
+    "radiation_level": 0.27,
+    "communication_delay_minutes": 11,
+    "science_objective": "Traverse toward a clay-bearing exposure before lighting conditions degrade.",
+    "mission_log": "Planner identified a longer but safer path with improved traction confidence.",
+    "expected_action": "reroute",
+    "expected_hazards": [
+      "sand ripples",
+      "moderate slope"
+    ],
+    "scenario_id": "MR-033"
+  },
+  {
+    "sol": 428,
+    "battery_level": 54,
+    "wheel_temperature": 58,
+    "terrain_slope": 14,
+    "terrain_description": "Moderately sloped channel floor with soft regolith pockets and embedded rocks.",
+    "radiation_level": 0.3,
+    "communication_delay_minutes": 12,
+    "science_objective": "Move to a ridge overlook for panoramic science observations.",
+    "mission_log": "Wheel currents are acceptable, but terrain risk increases along the shortest route.",
+    "expected_action": "reroute",
+    "expected_hazards": [
+      "traction loss risk",
+      "embedded rocks"
+    ],
+    "scenario_id": "MR-034"
+  },
+  {
+    "sol": 432,
+    "battery_level": 57,
+    "wheel_temperature": 61,
+    "terrain_slope": 15,
+    "terrain_description": "Crater-wall approach where compact terrain exists only along a longer lateral path.",
+    "radiation_level": 0.33,
+    "communication_delay_minutes": 13,
+    "science_objective": "Position the rover for arm deployment near a layered outcrop.",
+    "mission_log": "Navigation assessment recommends avoiding the soft shoulder on the direct path.",
+    "expected_action": "reroute",
+    "expected_hazards": [
+      "soft shoulder",
+      "cross-slope hazard"
+    ],
+    "scenario_id": "MR-035"
+  },
+  {
+    "sol": 436,
+    "battery_level": 60,
+    "wheel_temperature": 64,
+    "terrain_slope": 16,
+    "terrain_description": "Dust-coated traverse lane with unstable edges beside a firmer bypass route.",
+    "radiation_level": 0.24,
+    "communication_delay_minutes": 14,
+    "science_objective": "Approach a sediment fan for context imaging and follow-on sampling.",
+    "mission_log": "Drive telemetry indicates intermittent slip spikes near the current heading.",
+    "expected_action": "reroute",
+    "expected_hazards": [
+      "wheel overheating",
+      "loose sand",
+      "steep slope"
+    ],
+    "scenario_id": "MR-036"
+  },
+  {
+    "sol": 440,
+    "battery_level": 63,
+    "wheel_temperature": 67,
+    "terrain_slope": 17,
+    "terrain_description": "Mixed sand-and-gravel surface trending upward toward a sharper cross-slope.",
+    "radiation_level": 0.27,
+    "communication_delay_minutes": 15,
+    "science_objective": "Relocate to a bench with improved access to sulfate-bearing rock.",
+    "mission_log": "Planner identified a longer but safer path with improved traction confidence.",
+    "expected_action": "reroute",
+    "expected_hazards": [
+      "dust-covered ground",
+      "unstable edge"
+    ],
+    "scenario_id": "MR-037"
+  },
+  {
+    "sol": 444,
+    "battery_level": 66,
+    "wheel_temperature": 52,
+    "terrain_slope": 18,
+    "terrain_description": "Loose sand apron leading toward a steeper bench with visible slip streaks.",
+    "radiation_level": 0.3,
+    "communication_delay_minutes": 16,
+    "science_objective": "Reach an imaging point for crater-wall mineral mapping.",
+    "mission_log": "Wheel currents are acceptable, but terrain risk increases along the shortest route.",
+    "expected_action": "reroute",
+    "expected_hazards": [
+      "loose sand",
+      "steep slope"
+    ],
+    "scenario_id": "MR-038"
+  },
+  {
+    "sol": 448,
+    "battery_level": 48,
+    "wheel_temperature": 55,
+    "terrain_slope": 19,
+    "terrain_description": "Rippled drift field adjacent to a safer bedrock shoulder.",
+    "radiation_level": 0.33,
+    "communication_delay_minutes": 10,
+    "science_objective": "Traverse toward a clay-bearing exposure before lighting conditions degrade.",
+    "mission_log": "Navigation assessment recommends avoiding the soft shoulder on the direct path.",
+    "expected_action": "reroute",
+    "expected_hazards": [
+      "sand ripples",
+      "moderate slope"
+    ],
+    "scenario_id": "MR-039"
+  },
+  {
+    "sol": 452,
+    "battery_level": 51,
+    "wheel_temperature": 58,
+    "terrain_slope": 12,
+    "terrain_description": "Moderately sloped channel floor with soft regolith pockets and embedded rocks.",
+    "radiation_level": 0.24,
+    "communication_delay_minutes": 11,
+    "science_objective": "Move to a ridge overlook for panoramic science observations.",
+    "mission_log": "Drive telemetry indicates intermittent slip spikes near the current heading.",
+    "expected_action": "reroute",
+    "expected_hazards": [
+      "traction loss risk",
+      "embedded rocks"
+    ],
+    "scenario_id": "MR-040"
+  },
+  {
+    "sol": 456,
+    "battery_level": 54,
+    "wheel_temperature": 61,
+    "terrain_slope": 13,
+    "terrain_description": "Crater-wall approach where compact terrain exists only along a longer lateral path.",
+    "radiation_level": 0.27,
+    "communication_delay_minutes": 12,
+    "science_objective": "Position the rover for arm deployment near a layered outcrop.",
+    "mission_log": "Planner identified a longer but safer path with improved traction confidence.",
+    "expected_action": "reroute",
+    "expected_hazards": [
+      "soft shoulder",
+      "cross-slope hazard"
+    ],
+    "scenario_id": "MR-041"
+  },
+  {
+    "sol": 460,
+    "battery_level": 57,
+    "wheel_temperature": 64,
+    "terrain_slope": 14,
+    "terrain_description": "Dust-coated traverse lane with unstable edges beside a firmer bypass route.",
+    "radiation_level": 0.3,
+    "communication_delay_minutes": 13,
+    "science_objective": "Approach a sediment fan for context imaging and follow-on sampling.",
+    "mission_log": "Wheel currents are acceptable, but terrain risk increases along the shortest route.",
+    "expected_action": "reroute",
+    "expected_hazards": [
+      "wheel overheating",
+      "loose sand",
+      "steep slope"
+    ],
+    "scenario_id": "MR-042"
+  },
+  {
+    "sol": 464,
+    "battery_level": 60,
+    "wheel_temperature": 67,
+    "terrain_slope": 15,
+    "terrain_description": "Mixed sand-and-gravel surface trending upward toward a sharper cross-slope.",
+    "radiation_level": 0.33,
+    "communication_delay_minutes": 14,
+    "science_objective": "Relocate to a bench with improved access to sulfate-bearing rock.",
+    "mission_log": "Navigation assessment recommends avoiding the soft shoulder on the direct path.",
+    "expected_action": "reroute",
+    "expected_hazards": [
+      "dust-covered ground",
+      "unstable edge"
+    ],
+    "scenario_id": "MR-043"
+  },
+  {
+    "sol": 468,
+    "battery_level": 63,
+    "wheel_temperature": 52,
+    "terrain_slope": 16,
+    "terrain_description": "Loose sand apron leading toward a steeper bench with visible slip streaks.",
+    "radiation_level": 0.24,
+    "communication_delay_minutes": 15,
+    "science_objective": "Reach an imaging point for crater-wall mineral mapping.",
+    "mission_log": "Drive telemetry indicates intermittent slip spikes near the current heading.",
+    "expected_action": "reroute",
+    "expected_hazards": [
+      "loose sand",
+      "steep slope"
+    ],
+    "scenario_id": "MR-044"
+  },
+  {
+    "sol": 472,
+    "battery_level": 66,
+    "wheel_temperature": 55,
+    "terrain_slope": 17,
+    "terrain_description": "Rippled drift field adjacent to a safer bedrock shoulder.",
+    "radiation_level": 0.27,
+    "communication_delay_minutes": 16,
+    "science_objective": "Traverse toward a clay-bearing exposure before lighting conditions degrade.",
+    "mission_log": "Planner identified a longer but safer path with improved traction confidence.",
+    "expected_action": "reroute",
+    "expected_hazards": [
+      "sand ripples",
+      "moderate slope"
+    ],
+    "scenario_id": "MR-045"
+  },
+  {
+    "sol": 476,
+    "battery_level": 48,
+    "wheel_temperature": 58,
+    "terrain_slope": 18,
+    "terrain_description": "Moderately sloped channel floor with soft regolith pockets and embedded rocks.",
+    "radiation_level": 0.3,
+    "communication_delay_minutes": 10,
+    "science_objective": "Move to a ridge overlook for panoramic science observations.",
+    "mission_log": "Wheel currents are acceptable, but terrain risk increases along the shortest route.",
+    "expected_action": "reroute",
+    "expected_hazards": [
+      "traction loss risk",
+      "embedded rocks"
+    ],
+    "scenario_id": "MR-046"
+  },
+  {
+    "sol": 480,
+    "battery_level": 51,
+    "wheel_temperature": 61,
+    "terrain_slope": 19,
+    "terrain_description": "Crater-wall approach where compact terrain exists only along a longer lateral path.",
+    "radiation_level": 0.33,
+    "communication_delay_minutes": 11,
+    "science_objective": "Position the rover for arm deployment near a layered outcrop.",
+    "mission_log": "Navigation assessment recommends avoiding the soft shoulder on the direct path.",
+    "expected_action": "reroute",
+    "expected_hazards": [
+      "soft shoulder",
+      "cross-slope hazard"
+    ],
+    "scenario_id": "MR-047"
+  },
+  {
+    "sol": 484,
+    "battery_level": 54,
+    "wheel_temperature": 64,
+    "terrain_slope": 12,
+    "terrain_description": "Dust-coated traverse lane with unstable edges beside a firmer bypass route.",
+    "radiation_level": 0.24,
+    "communication_delay_minutes": 12,
+    "science_objective": "Approach a sediment fan for context imaging and follow-on sampling.",
+    "mission_log": "Drive telemetry indicates intermittent slip spikes near the current heading.",
+    "expected_action": "reroute",
+    "expected_hazards": [
+      "wheel overheating",
+      "loose sand",
+      "steep slope"
+    ],
+    "scenario_id": "MR-048"
+  },
+  {
+    "sol": 488,
+    "battery_level": 57,
+    "wheel_temperature": 67,
+    "terrain_slope": 13,
+    "terrain_description": "Mixed sand-and-gravel surface trending upward toward a sharper cross-slope.",
+    "radiation_level": 0.27,
+    "communication_delay_minutes": 13,
+    "science_objective": "Relocate to a bench with improved access to sulfate-bearing rock.",
+    "mission_log": "Planner identified a longer but safer path with improved traction confidence.",
+    "expected_action": "reroute",
+    "expected_hazards": [
+      "dust-covered ground",
+      "unstable edge"
+    ],
+    "scenario_id": "MR-049"
+  },
+  {
+    "sol": 492,
+    "battery_level": 60,
+    "wheel_temperature": 52,
+    "terrain_slope": 14,
+    "terrain_description": "Loose sand apron leading toward a steeper bench with visible slip streaks.",
+    "radiation_level": 0.3,
+    "communication_delay_minutes": 14,
+    "science_objective": "Reach an imaging point for crater-wall mineral mapping.",
+    "mission_log": "Wheel currents are acceptable, but terrain risk increases along the shortest route.",
+    "expected_action": "reroute",
+    "expected_hazards": [
+      "loose sand",
+      "steep slope"
+    ],
+    "scenario_id": "MR-050"
+  },
+  {
+    "sol": 496,
+    "battery_level": 63,
+    "wheel_temperature": 55,
+    "terrain_slope": 15,
+    "terrain_description": "Rippled drift field adjacent to a safer bedrock shoulder.",
+    "radiation_level": 0.33,
+    "communication_delay_minutes": 15,
+    "science_objective": "Traverse toward a clay-bearing exposure before lighting conditions degrade.",
+    "mission_log": "Navigation assessment recommends avoiding the soft shoulder on the direct path.",
+    "expected_action": "reroute",
+    "expected_hazards": [
+      "sand ripples",
+      "moderate slope"
+    ],
+    "scenario_id": "MR-051"
+  },
+  {
+    "sol": 500,
+    "battery_level": 66,
+    "wheel_temperature": 58,
+    "terrain_slope": 16,
+    "terrain_description": "Moderately sloped channel floor with soft regolith pockets and embedded rocks.",
+    "radiation_level": 0.24,
+    "communication_delay_minutes": 16,
+    "science_objective": "Move to a ridge overlook for panoramic science observations.",
+    "mission_log": "Drive telemetry indicates intermittent slip spikes near the current heading.",
+    "expected_action": "reroute",
+    "expected_hazards": [
+      "traction loss risk",
+      "embedded rocks"
+    ],
+    "scenario_id": "MR-052"
+  },
+  {
+    "sol": 504,
+    "battery_level": 48,
+    "wheel_temperature": 61,
+    "terrain_slope": 17,
+    "terrain_description": "Crater-wall approach where compact terrain exists only along a longer lateral path.",
+    "radiation_level": 0.27,
+    "communication_delay_minutes": 10,
+    "science_objective": "Position the rover for arm deployment near a layered outcrop.",
+    "mission_log": "Planner identified a longer but safer path with improved traction confidence.",
+    "expected_action": "reroute",
+    "expected_hazards": [
+      "soft shoulder",
+      "cross-slope hazard"
+    ],
+    "scenario_id": "MR-053"
+  },
+  {
+    "sol": 508,
+    "battery_level": 51,
+    "wheel_temperature": 64,
+    "terrain_slope": 18,
+    "terrain_description": "Dust-coated traverse lane with unstable edges beside a firmer bypass route.",
+    "radiation_level": 0.3,
+    "communication_delay_minutes": 11,
+    "science_objective": "Approach a sediment fan for context imaging and follow-on sampling.",
+    "mission_log": "Wheel currents are acceptable, but terrain risk increases along the shortest route.",
+    "expected_action": "reroute",
+    "expected_hazards": [
+      "wheel overheating",
+      "loose sand",
+      "steep slope"
+    ],
+    "scenario_id": "MR-054"
+  },
+  {
+    "sol": 540,
+    "battery_level": 18,
+    "wheel_temperature": 41,
+    "terrain_slope": 3,
+    "terrain_description": "Stable flat terrain with no major mobility obstacles.",
+    "radiation_level": 0.28,
+    "communication_delay_minutes": 9,
+    "science_objective": "Hold for an atmospheric sampling window after systems stabilize.",
+    "mission_log": "Battery reserve has trended downward after extended instrument usage.",
+    "expected_action": "pause",
+    "expected_hazards": [
+      "low battery"
+    ],
+    "scenario_id": "MR-055"
+  },
+  {
+    "sol": 545,
+    "battery_level": 22,
+    "wheel_temperature": 46,
+    "terrain_slope": 4,
+    "terrain_description": "Low-relief basalt plain suitable for holding position.",
+    "radiation_level": 0.35,
+    "communication_delay_minutes": 10,
+    "science_objective": "Delay arm deployment until environmental conditions improve.",
+    "mission_log": "Environmental telemetry shows worsening conditions over the last two planning cycles.",
+    "expected_action": "pause",
+    "expected_hazards": [
+      "elevated radiation",
+      "dust opacity"
+    ],
+    "scenario_id": "MR-056"
+  },
+  {
+    "sol": 550,
+    "battery_level": 26,
+    "wheel_temperature": 51,
+    "terrain_slope": 5,
+    "terrain_description": "Compact regolith bench with good stow posture and minimal immediate terrain risk.",
+    "radiation_level": 0.42,
+    "communication_delay_minutes": 11,
+    "science_objective": "Preserve vehicle health before resuming a planned traverse.",
+    "mission_log": "Thermal margin is narrowing and a cooldown pause would protect actuators.",
+    "expected_action": "pause",
+    "expected_hazards": [
+      "wheel overheating"
+    ],
+    "scenario_id": "MR-057"
+  },
+  {
+    "sol": 555,
+    "battery_level": 30,
+    "wheel_temperature": 56,
+    "terrain_slope": 6,
+    "terrain_description": "Level surface near a prior drill site with adequate communications geometry.",
+    "radiation_level": 0.49,
+    "communication_delay_minutes": 12,
+    "science_objective": "Pause surface operations until power or environmental margins recover.",
+    "mission_log": "Dust or radiation conditions exceed the nominal comfort range for current activities.",
+    "expected_action": "pause",
+    "expected_hazards": [
+      "instrument thermal stress"
+    ],
+    "scenario_id": "MR-058"
+  },
+  {
+    "sol": 560,
+    "battery_level": 34,
+    "wheel_temperature": 61,
+    "terrain_slope": 7,
+    "terrain_description": "Stable flat terrain with no major mobility obstacles.",
+    "radiation_level": 0.56,
+    "communication_delay_minutes": 13,
+    "science_objective": "Hold for an atmospheric sampling window after systems stabilize.",
+    "mission_log": "Battery reserve has trended downward after extended instrument usage.",
+    "expected_action": "pause",
+    "expected_hazards": [
+      "low power margin",
+      "communication risk"
+    ],
+    "scenario_id": "MR-059"
+  },
+  {
+    "sol": 565,
+    "battery_level": 38,
+    "wheel_temperature": 66,
+    "terrain_slope": 3,
+    "terrain_description": "Low-relief basalt plain suitable for holding position.",
+    "radiation_level": 0.63,
+    "communication_delay_minutes": 14,
+    "science_objective": "Delay arm deployment until environmental conditions improve.",
+    "mission_log": "Environmental telemetry shows worsening conditions over the last two planning cycles.",
+    "expected_action": "pause",
+    "expected_hazards": [
+      "dust accumulation",
+      "reduced visibility"
+    ],
+    "scenario_id": "MR-060"
+  },
+  {
+    "sol": 570,
+    "battery_level": 42,
+    "wheel_temperature": 71,
+    "terrain_slope": 4,
+    "terrain_description": "Compact regolith bench with good stow posture and minimal immediate terrain risk.",
+    "radiation_level": 0.28,
+    "communication_delay_minutes": 15,
+    "science_objective": "Preserve vehicle health before resuming a planned traverse.",
+    "mission_log": "Thermal margin is narrowing and a cooldown pause would protect actuators.",
+    "expected_action": "pause",
+    "expected_hazards": [
+      "low battery"
+    ],
+    "scenario_id": "MR-061"
+  },
+  {
+    "sol": 575,
+    "battery_level": 46,
+    "wheel_temperature": 41,
+    "terrain_slope": 5,
+    "terrain_description": "Level surface near a prior drill site with adequate communications geometry.",
+    "radiation_level": 0.35,
+    "communication_delay_minutes": 16,
+    "science_objective": "Pause surface operations until power or environmental margins recover.",
+    "mission_log": "Dust or radiation conditions exceed the nominal comfort range for current activities.",
+    "expected_action": "pause",
+    "expected_hazards": [
+      "elevated radiation",
+      "dust opacity"
+    ],
+    "scenario_id": "MR-062"
+  },
+  {
+    "sol": 580,
+    "battery_level": 18,
+    "wheel_temperature": 46,
+    "terrain_slope": 6,
+    "terrain_description": "Stable flat terrain with no major mobility obstacles.",
+    "radiation_level": 0.42,
+    "communication_delay_minutes": 9,
+    "science_objective": "Hold for an atmospheric sampling window after systems stabilize.",
+    "mission_log": "Battery reserve has trended downward after extended instrument usage.",
+    "expected_action": "pause",
+    "expected_hazards": [
+      "wheel overheating"
+    ],
+    "scenario_id": "MR-063"
+  },
+  {
+    "sol": 585,
+    "battery_level": 22,
+    "wheel_temperature": 51,
+    "terrain_slope": 7,
+    "terrain_description": "Low-relief basalt plain suitable for holding position.",
+    "radiation_level": 0.49,
+    "communication_delay_minutes": 10,
+    "science_objective": "Delay arm deployment until environmental conditions improve.",
+    "mission_log": "Environmental telemetry shows worsening conditions over the last two planning cycles.",
+    "expected_action": "pause",
+    "expected_hazards": [
+      "instrument thermal stress"
+    ],
+    "scenario_id": "MR-064"
+  },
+  {
+    "sol": 590,
+    "battery_level": 26,
+    "wheel_temperature": 56,
+    "terrain_slope": 3,
+    "terrain_description": "Compact regolith bench with good stow posture and minimal immediate terrain risk.",
+    "radiation_level": 0.56,
+    "communication_delay_minutes": 11,
+    "science_objective": "Preserve vehicle health before resuming a planned traverse.",
+    "mission_log": "Thermal margin is narrowing and a cooldown pause would protect actuators.",
+    "expected_action": "pause",
+    "expected_hazards": [
+      "low power margin",
+      "communication risk"
+    ],
+    "scenario_id": "MR-065"
+  },
+  {
+    "sol": 595,
+    "battery_level": 30,
+    "wheel_temperature": 61,
+    "terrain_slope": 4,
+    "terrain_description": "Level surface near a prior drill site with adequate communications geometry.",
+    "radiation_level": 0.63,
+    "communication_delay_minutes": 12,
+    "science_objective": "Pause surface operations until power or environmental margins recover.",
+    "mission_log": "Dust or radiation conditions exceed the nominal comfort range for current activities.",
+    "expected_action": "pause",
+    "expected_hazards": [
+      "dust accumulation",
+      "reduced visibility"
+    ],
+    "scenario_id": "MR-066"
+  },
+  {
+    "sol": 600,
+    "battery_level": 34,
+    "wheel_temperature": 66,
+    "terrain_slope": 5,
+    "terrain_description": "Stable flat terrain with no major mobility obstacles.",
+    "radiation_level": 0.28,
+    "communication_delay_minutes": 13,
+    "science_objective": "Hold for an atmospheric sampling window after systems stabilize.",
+    "mission_log": "Battery reserve has trended downward after extended instrument usage.",
+    "expected_action": "pause",
+    "expected_hazards": [
+      "low battery"
+    ],
+    "scenario_id": "MR-067"
+  },
+  {
+    "sol": 605,
+    "battery_level": 38,
+    "wheel_temperature": 71,
+    "terrain_slope": 6,
+    "terrain_description": "Low-relief basalt plain suitable for holding position.",
+    "radiation_level": 0.35,
+    "communication_delay_minutes": 14,
+    "science_objective": "Delay arm deployment until environmental conditions improve.",
+    "mission_log": "Environmental telemetry shows worsening conditions over the last two planning cycles.",
+    "expected_action": "pause",
+    "expected_hazards": [
+      "elevated radiation",
+      "dust opacity"
+    ],
+    "scenario_id": "MR-068"
+  },
+  {
+    "sol": 610,
+    "battery_level": 42,
+    "wheel_temperature": 41,
+    "terrain_slope": 7,
+    "terrain_description": "Compact regolith bench with good stow posture and minimal immediate terrain risk.",
+    "radiation_level": 0.42,
+    "communication_delay_minutes": 15,
+    "science_objective": "Preserve vehicle health before resuming a planned traverse.",
+    "mission_log": "Thermal margin is narrowing and a cooldown pause would protect actuators.",
+    "expected_action": "pause",
+    "expected_hazards": [
+      "wheel overheating"
+    ],
+    "scenario_id": "MR-069"
+  },
+  {
+    "sol": 615,
+    "battery_level": 46,
+    "wheel_temperature": 46,
+    "terrain_slope": 3,
+    "terrain_description": "Level surface near a prior drill site with adequate communications geometry.",
+    "radiation_level": 0.49,
+    "communication_delay_minutes": 16,
+    "science_objective": "Pause surface operations until power or environmental margins recover.",
+    "mission_log": "Dust or radiation conditions exceed the nominal comfort range for current activities.",
+    "expected_action": "pause",
+    "expected_hazards": [
+      "instrument thermal stress"
+    ],
+    "scenario_id": "MR-070"
+  },
+  {
+    "sol": 620,
+    "battery_level": 18,
+    "wheel_temperature": 51,
+    "terrain_slope": 4,
+    "terrain_description": "Stable flat terrain with no major mobility obstacles.",
+    "radiation_level": 0.56,
+    "communication_delay_minutes": 9,
+    "science_objective": "Hold for an atmospheric sampling window after systems stabilize.",
+    "mission_log": "Battery reserve has trended downward after extended instrument usage.",
+    "expected_action": "pause",
+    "expected_hazards": [
+      "low power margin",
+      "communication risk"
+    ],
+    "scenario_id": "MR-071"
+  },
+  {
+    "sol": 625,
+    "battery_level": 22,
+    "wheel_temperature": 56,
+    "terrain_slope": 5,
+    "terrain_description": "Low-relief basalt plain suitable for holding position.",
+    "radiation_level": 0.63,
+    "communication_delay_minutes": 10,
+    "science_objective": "Delay arm deployment until environmental conditions improve.",
+    "mission_log": "Environmental telemetry shows worsening conditions over the last two planning cycles.",
+    "expected_action": "pause",
+    "expected_hazards": [
+      "dust accumulation",
+      "reduced visibility"
+    ],
+    "scenario_id": "MR-072"
+  },
+  {
+    "sol": 630,
+    "battery_level": 26,
+    "wheel_temperature": 61,
+    "terrain_slope": 6,
+    "terrain_description": "Compact regolith bench with good stow posture and minimal immediate terrain risk.",
+    "radiation_level": 0.28,
+    "communication_delay_minutes": 11,
+    "science_objective": "Preserve vehicle health before resuming a planned traverse.",
+    "mission_log": "Thermal margin is narrowing and a cooldown pause would protect actuators.",
+    "expected_action": "pause",
+    "expected_hazards": [
+      "low battery"
+    ],
+    "scenario_id": "MR-073"
+  },
+  {
+    "sol": 635,
+    "battery_level": 30,
+    "wheel_temperature": 66,
+    "terrain_slope": 7,
+    "terrain_description": "Level surface near a prior drill site with adequate communications geometry.",
+    "radiation_level": 0.35,
+    "communication_delay_minutes": 12,
+    "science_objective": "Pause surface operations until power or environmental margins recover.",
+    "mission_log": "Dust or radiation conditions exceed the nominal comfort range for current activities.",
+    "expected_action": "pause",
+    "expected_hazards": [
+      "elevated radiation",
+      "dust opacity"
+    ],
+    "scenario_id": "MR-074"
+  },
+  {
+    "sol": 640,
+    "battery_level": 34,
+    "wheel_temperature": 71,
+    "terrain_slope": 3,
+    "terrain_description": "Stable flat terrain with no major mobility obstacles.",
+    "radiation_level": 0.42,
+    "communication_delay_minutes": 13,
+    "science_objective": "Hold for an atmospheric sampling window after systems stabilize.",
+    "mission_log": "Battery reserve has trended downward after extended instrument usage.",
+    "expected_action": "pause",
+    "expected_hazards": [
+      "wheel overheating"
+    ],
+    "scenario_id": "MR-075"
+  },
+  {
+    "sol": 645,
+    "battery_level": 38,
+    "wheel_temperature": 41,
+    "terrain_slope": 4,
+    "terrain_description": "Low-relief basalt plain suitable for holding position.",
+    "radiation_level": 0.49,
+    "communication_delay_minutes": 14,
+    "science_objective": "Delay arm deployment until environmental conditions improve.",
+    "mission_log": "Environmental telemetry shows worsening conditions over the last two planning cycles.",
+    "expected_action": "pause",
+    "expected_hazards": [
+      "instrument thermal stress"
+    ],
+    "scenario_id": "MR-076"
+  },
+  {
+    "sol": 650,
+    "battery_level": 42,
+    "wheel_temperature": 46,
+    "terrain_slope": 5,
+    "terrain_description": "Compact regolith bench with good stow posture and minimal immediate terrain risk.",
+    "radiation_level": 0.56,
+    "communication_delay_minutes": 15,
+    "science_objective": "Preserve vehicle health before resuming a planned traverse.",
+    "mission_log": "Thermal margin is narrowing and a cooldown pause would protect actuators.",
+    "expected_action": "pause",
+    "expected_hazards": [
+      "low power margin",
+      "communication risk"
+    ],
+    "scenario_id": "MR-077"
+  },
+  {
+    "sol": 680,
+    "battery_level": 38,
+    "wheel_temperature": 50,
+    "terrain_slope": 11,
+    "terrain_description": "Narrow fractured corridor with sharp rocks, blind turns, and uncertain wheel clearance.",
+    "radiation_level": 0.26,
+    "communication_delay_minutes": 18,
+    "science_objective": "Approach a high-value mineral vein for spectrometer analysis.",
+    "mission_log": "Autonav flags repeated wheel-clearance concerns and route confidence remains low.",
+    "expected_action": "request_human_review",
+    "expected_hazards": [
+      "sharp rocks",
+      "wheel damage risk",
+      "long communication delay"
+    ],
+    "scenario_id": "MR-078"
+  },
+  {
+    "sol": 686,
+    "battery_level": 43,
+    "wheel_temperature": 54,
+    "terrain_slope": 12,
+    "terrain_description": "Steep gully entrance with shadowed obstacles and no confirmed exit route.",
+    "radiation_level": 0.31,
+    "communication_delay_minutes": 19,
+    "science_objective": "Investigate hydrated signatures inside a partially shadowed gully.",
+    "mission_log": "Science value is high, but the operations team would benefit from a deliberate review.",
+    "expected_action": "request_human_review",
+    "expected_hazards": [
+      "steep slope",
+      "uncertain exit route",
+      "shadowed rocks"
+    ],
+    "scenario_id": "MR-079"
+  },
+  {
+    "sol": 692,
+    "battery_level": 48,
+    "wheel_temperature": 58,
+    "terrain_slope": 13,
+    "terrain_description": "Broken bedrock ledge network with narrow channels and limited escape options.",
+    "radiation_level": 0.36,
+    "communication_delay_minutes": 20,
+    "science_objective": "Reach a fractured outcrop that may preserve alteration textures.",
+    "mission_log": "Communications delay and terrain ambiguity increase the consequence of an autonomous mistake.",
+    "expected_action": "request_human_review",
+    "expected_hazards": [
+      "terrain model uncertainty",
+      "blind turn",
+      "limited escape path"
+    ],
+    "scenario_id": "MR-080"
+  },
+  {
+    "sol": 698,
+    "battery_level": 53,
+    "wheel_temperature": 62,
+    "terrain_slope": 14,
+    "terrain_description": "Crater-rim notch containing sharp ejecta blocks and ambiguous traction estimates.",
+    "radiation_level": 0.41,
+    "communication_delay_minutes": 21,
+    "science_objective": "Inspect bright clasts exposed near a rim breach.",
+    "mission_log": "Recent planning products disagree on the safest entry angle into the target zone.",
+    "expected_action": "request_human_review",
+    "expected_hazards": [
+      "sharp ejecta blocks",
+      "long communication delay",
+      "cross-slope hazard"
+    ],
+    "scenario_id": "MR-081"
+  },
+  {
+    "sol": 704,
+    "battery_level": 58,
+    "wheel_temperature": 66,
+    "terrain_slope": 15,
+    "terrain_description": "Rocky slope above a confined basin with uncertain turnaround space.",
+    "radiation_level": 0.46,
+    "communication_delay_minutes": 22,
+    "science_objective": "Evaluate a steep access route to a scientifically valuable ledge.",
+    "mission_log": "Autonav flags repeated wheel-clearance concerns and route confidence remains low.",
+    "expected_action": "request_human_review",
+    "expected_hazards": [
+      "confined turning space",
+      "wheel damage risk",
+      "steep slope"
+    ],
+    "scenario_id": "MR-082"
+  },
+  {
+    "sol": 710,
+    "battery_level": 63,
+    "wheel_temperature": 70,
+    "terrain_slope": 16,
+    "terrain_description": "Shadowed ravine approach where terrain model confidence drops sharply.",
+    "radiation_level": 0.26,
+    "communication_delay_minutes": 23,
+    "science_objective": "Approach subsurface exposure revealed by recent erosion.",
+    "mission_log": "Science value is high, but the operations team would benefit from a deliberate review.",
+    "expected_action": "request_human_review",
+    "expected_hazards": [
+      "shadowed rocks",
+      "route ambiguity",
+      "long communication delay"
+    ],
+    "scenario_id": "MR-083"
+  },
+  {
+    "sol": 716,
+    "battery_level": 38,
+    "wheel_temperature": 50,
+    "terrain_slope": 17,
+    "terrain_description": "Narrow fractured corridor with sharp rocks, blind turns, and uncertain wheel clearance.",
+    "radiation_level": 0.31,
+    "communication_delay_minutes": 24,
+    "science_objective": "Approach a high-value mineral vein for spectrometer analysis.",
+    "mission_log": "Communications delay and terrain ambiguity increase the consequence of an autonomous mistake.",
+    "expected_action": "request_human_review",
+    "expected_hazards": [
+      "sharp rocks",
+      "wheel damage risk",
+      "long communication delay"
+    ],
+    "scenario_id": "MR-084"
+  },
+  {
+    "sol": 722,
+    "battery_level": 43,
+    "wheel_temperature": 54,
+    "terrain_slope": 18,
+    "terrain_description": "Steep gully entrance with shadowed obstacles and no confirmed exit route.",
+    "radiation_level": 0.36,
+    "communication_delay_minutes": 25,
+    "science_objective": "Investigate hydrated signatures inside a partially shadowed gully.",
+    "mission_log": "Recent planning products disagree on the safest entry angle into the target zone.",
+    "expected_action": "request_human_review",
+    "expected_hazards": [
+      "steep slope",
+      "uncertain exit route",
+      "shadowed rocks"
+    ],
+    "scenario_id": "MR-085"
+  },
+  {
+    "sol": 728,
+    "battery_level": 48,
+    "wheel_temperature": 58,
+    "terrain_slope": 19,
+    "terrain_description": "Broken bedrock ledge network with narrow channels and limited escape options.",
+    "radiation_level": 0.41,
+    "communication_delay_minutes": 18,
+    "science_objective": "Reach a fractured outcrop that may preserve alteration textures.",
+    "mission_log": "Autonav flags repeated wheel-clearance concerns and route confidence remains low.",
+    "expected_action": "request_human_review",
+    "expected_hazards": [
+      "terrain model uncertainty",
+      "blind turn",
+      "limited escape path"
+    ],
+    "scenario_id": "MR-086"
+  },
+  {
+    "sol": 734,
+    "battery_level": 53,
+    "wheel_temperature": 62,
+    "terrain_slope": 20,
+    "terrain_description": "Crater-rim notch containing sharp ejecta blocks and ambiguous traction estimates.",
+    "radiation_level": 0.46,
+    "communication_delay_minutes": 19,
+    "science_objective": "Inspect bright clasts exposed near a rim breach.",
+    "mission_log": "Science value is high, but the operations team would benefit from a deliberate review.",
+    "expected_action": "request_human_review",
+    "expected_hazards": [
+      "sharp ejecta blocks",
+      "long communication delay",
+      "cross-slope hazard"
+    ],
+    "scenario_id": "MR-087"
+  },
+  {
+    "sol": 740,
+    "battery_level": 58,
+    "wheel_temperature": 66,
+    "terrain_slope": 11,
+    "terrain_description": "Rocky slope above a confined basin with uncertain turnaround space.",
+    "radiation_level": 0.26,
+    "communication_delay_minutes": 20,
+    "science_objective": "Evaluate a steep access route to a scientifically valuable ledge.",
+    "mission_log": "Communications delay and terrain ambiguity increase the consequence of an autonomous mistake.",
+    "expected_action": "request_human_review",
+    "expected_hazards": [
+      "confined turning space",
+      "wheel damage risk",
+      "steep slope"
+    ],
+    "scenario_id": "MR-088"
+  },
+  {
+    "sol": 746,
+    "battery_level": 63,
+    "wheel_temperature": 70,
+    "terrain_slope": 12,
+    "terrain_description": "Shadowed ravine approach where terrain model confidence drops sharply.",
+    "radiation_level": 0.31,
+    "communication_delay_minutes": 21,
+    "science_objective": "Approach subsurface exposure revealed by recent erosion.",
+    "mission_log": "Recent planning products disagree on the safest entry angle into the target zone.",
+    "expected_action": "request_human_review",
+    "expected_hazards": [
+      "shadowed rocks",
+      "route ambiguity",
+      "long communication delay"
+    ],
+    "scenario_id": "MR-089"
+  },
+  {
+    "sol": 752,
+    "battery_level": 38,
+    "wheel_temperature": 50,
+    "terrain_slope": 13,
+    "terrain_description": "Narrow fractured corridor with sharp rocks, blind turns, and uncertain wheel clearance.",
+    "radiation_level": 0.36,
+    "communication_delay_minutes": 22,
+    "science_objective": "Approach a high-value mineral vein for spectrometer analysis.",
+    "mission_log": "Autonav flags repeated wheel-clearance concerns and route confidence remains low.",
+    "expected_action": "request_human_review",
+    "expected_hazards": [
+      "sharp rocks",
+      "wheel damage risk",
+      "long communication delay"
+    ],
+    "scenario_id": "MR-090"
+  },
+  {
+    "sol": 758,
+    "battery_level": 43,
+    "wheel_temperature": 54,
+    "terrain_slope": 14,
+    "terrain_description": "Steep gully entrance with shadowed obstacles and no confirmed exit route.",
+    "radiation_level": 0.41,
+    "communication_delay_minutes": 23,
+    "science_objective": "Investigate hydrated signatures inside a partially shadowed gully.",
+    "mission_log": "Science value is high, but the operations team would benefit from a deliberate review.",
+    "expected_action": "request_human_review",
+    "expected_hazards": [
+      "steep slope",
+      "uncertain exit route",
+      "shadowed rocks"
+    ],
+    "scenario_id": "MR-091"
+  },
+  {
+    "sol": 764,
+    "battery_level": 48,
+    "wheel_temperature": 58,
+    "terrain_slope": 15,
+    "terrain_description": "Broken bedrock ledge network with narrow channels and limited escape options.",
+    "radiation_level": 0.46,
+    "communication_delay_minutes": 24,
+    "science_objective": "Reach a fractured outcrop that may preserve alteration textures.",
+    "mission_log": "Communications delay and terrain ambiguity increase the consequence of an autonomous mistake.",
+    "expected_action": "request_human_review",
+    "expected_hazards": [
+      "terrain model uncertainty",
+      "blind turn",
+      "limited escape path"
+    ],
+    "scenario_id": "MR-092"
+  },
+  {
+    "sol": 770,
+    "battery_level": 53,
+    "wheel_temperature": 62,
+    "terrain_slope": 16,
+    "terrain_description": "Crater-rim notch containing sharp ejecta blocks and ambiguous traction estimates.",
+    "radiation_level": 0.26,
+    "communication_delay_minutes": 25,
+    "science_objective": "Inspect bright clasts exposed near a rim breach.",
+    "mission_log": "Recent planning products disagree on the safest entry angle into the target zone.",
+    "expected_action": "request_human_review",
+    "expected_hazards": [
+      "sharp ejecta blocks",
+      "long communication delay",
+      "cross-slope hazard"
+    ],
+    "scenario_id": "MR-093"
+  },
+  {
+    "sol": 776,
+    "battery_level": 58,
+    "wheel_temperature": 66,
+    "terrain_slope": 17,
+    "terrain_description": "Rocky slope above a confined basin with uncertain turnaround space.",
+    "radiation_level": 0.31,
+    "communication_delay_minutes": 18,
+    "science_objective": "Evaluate a steep access route to a scientifically valuable ledge.",
+    "mission_log": "Autonav flags repeated wheel-clearance concerns and route confidence remains low.",
+    "expected_action": "request_human_review",
+    "expected_hazards": [
+      "confined turning space",
+      "wheel damage risk",
+      "steep slope"
+    ],
+    "scenario_id": "MR-094"
+  },
+  {
+    "sol": 782,
+    "battery_level": 63,
+    "wheel_temperature": 70,
+    "terrain_slope": 18,
+    "terrain_description": "Shadowed ravine approach where terrain model confidence drops sharply.",
+    "radiation_level": 0.36,
+    "communication_delay_minutes": 19,
+    "science_objective": "Approach subsurface exposure revealed by recent erosion.",
+    "mission_log": "Science value is high, but the operations team would benefit from a deliberate review.",
+    "expected_action": "request_human_review",
+    "expected_hazards": [
+      "shadowed rocks",
+      "route ambiguity",
+      "long communication delay"
+    ],
+    "scenario_id": "MR-095"
+  },
+  {
+    "sol": 788,
+    "battery_level": 38,
+    "wheel_temperature": 50,
+    "terrain_slope": 19,
+    "terrain_description": "Narrow fractured corridor with sharp rocks, blind turns, and uncertain wheel clearance.",
+    "radiation_level": 0.41,
+    "communication_delay_minutes": 20,
+    "science_objective": "Approach a high-value mineral vein for spectrometer analysis.",
+    "mission_log": "Communications delay and terrain ambiguity increase the consequence of an autonomous mistake.",
+    "expected_action": "request_human_review",
+    "expected_hazards": [
+      "sharp rocks",
+      "wheel damage risk",
+      "long communication delay"
+    ],
+    "scenario_id": "MR-096"
+  },
+  {
+    "sol": 794,
+    "battery_level": 43,
+    "wheel_temperature": 54,
+    "terrain_slope": 20,
+    "terrain_description": "Steep gully entrance with shadowed obstacles and no confirmed exit route.",
+    "radiation_level": 0.46,
+    "communication_delay_minutes": 21,
+    "science_objective": "Investigate hydrated signatures inside a partially shadowed gully.",
+    "mission_log": "Recent planning products disagree on the safest entry angle into the target zone.",
+    "expected_action": "request_human_review",
+    "expected_hazards": [
+      "steep slope",
+      "uncertain exit route",
+      "shadowed rocks"
+    ],
+    "scenario_id": "MR-097"
+  },
+  {
+    "sol": 800,
+    "battery_level": 48,
+    "wheel_temperature": 58,
+    "terrain_slope": 11,
+    "terrain_description": "Broken bedrock ledge network with narrow channels and limited escape options.",
+    "radiation_level": 0.26,
+    "communication_delay_minutes": 22,
+    "science_objective": "Reach a fractured outcrop that may preserve alteration textures.",
+    "mission_log": "Autonav flags repeated wheel-clearance concerns and route confidence remains low.",
+    "expected_action": "request_human_review",
+    "expected_hazards": [
+      "terrain model uncertainty",
+      "blind turn",
+      "limited escape path"
+    ],
+    "scenario_id": "MR-098"
+  },
+  {
+    "sol": 806,
+    "battery_level": 53,
+    "wheel_temperature": 62,
+    "terrain_slope": 12,
+    "terrain_description": "Crater-rim notch containing sharp ejecta blocks and ambiguous traction estimates.",
+    "radiation_level": 0.31,
+    "communication_delay_minutes": 23,
+    "science_objective": "Inspect bright clasts exposed near a rim breach.",
+    "mission_log": "Science value is high, but the operations team would benefit from a deliberate review.",
+    "expected_action": "request_human_review",
+    "expected_hazards": [
+      "sharp ejecta blocks",
+      "long communication delay",
+      "cross-slope hazard"
+    ],
+    "scenario_id": "MR-099"
+  },
+  {
+    "sol": 812,
+    "battery_level": 58,
+    "wheel_temperature": 66,
+    "terrain_slope": 13,
+    "terrain_description": "Rocky slope above a confined basin with uncertain turnaround space.",
+    "radiation_level": 0.36,
+    "communication_delay_minutes": 24,
+    "science_objective": "Evaluate a steep access route to a scientifically valuable ledge.",
+    "mission_log": "Communications delay and terrain ambiguity increase the consequence of an autonomous mistake.",
+    "expected_action": "request_human_review",
+    "expected_hazards": [
+      "confined turning space",
+      "wheel damage risk",
+      "steep slope"
+    ],
+    "scenario_id": "MR-100"
+  }
+]
