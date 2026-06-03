@@ -1,0 +1,6 @@
+condition,dropped_agent,n_evaluations,decision_accuracy,delta_accuracy_pp,exact_hazard_f1,delta_f1,semantic_hazard_f1,canonical_coverage,delta_coverage_pp,mean_spurious_hazards,mean_false_positives,mean_false_negatives,mean_latency_s,mean_tokens,mean_confidence,paired_test,paired_observations,baseline_correct_ablation_incorrect,ablation_correct_baseline_incorrect,discordant_pairs,p_value_vs_baseline
+baseline_full,—,500,73.4,0.0,0.0431,0.0,0.1061,21.4,0.0,3.312,5.514,1.468,11.8328,2273,0.8678,exact McNemar test,500,0,0,0,1.0
+drop_telemetry,telemetry_agent,500,74.4,1.0,0.0423,-0.0008,0.1094,22.23,0.83,3.414,5.668,1.442,10.1775,1849,0.8665,exact McNemar test,500,20,25,45,0.5514843298025198
+drop_terrain,terrain_agent,500,66.6,-6.8,0.007,-0.0361,0.0699,11.89,-9.51,2.798,4.264,1.71,10.7759,1863,0.8681,exact McNemar test,500,50,16,66,3.328235017032062e-05
+drop_risk,risk_agent,500,75.8,2.4,0.065,0.0219,0.1596,26.3,4.9,2.02,4.002,1.32,8.9831,1717,0.8731,exact McNemar test,500,17,29,46,0.10380535550410741
+drop_mission_planner,mission_planner_agent,500,68.4,-5.0,0.0423,-0.0008,0.099,18.55,-2.85,3.004,4.988,1.542,9.4524,1828,0.8651,exact McNemar test,500,45,20,65,0.0026263768106840383

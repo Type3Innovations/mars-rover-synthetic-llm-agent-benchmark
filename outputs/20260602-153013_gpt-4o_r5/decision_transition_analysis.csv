@@ -1,0 +1,17 @@
+architecture_type,expected_action,recommended_action,count,total_for_expected_action,rate_within_expected_action,is_error_transition,is_reroute_to_proceed,is_reroute_to_pause
+multi_agent_orchestration,pause,pause,125,125,1.0,False,False,False
+multi_agent_orchestration,proceed,proceed,125,125,1.0,False,False,False
+multi_agent_orchestration,request_human_review,pause,64,125,0.512,True,False,False
+multi_agent_orchestration,request_human_review,proceed,4,125,0.032,True,False,False
+multi_agent_orchestration,request_human_review,request_human_review,51,125,0.408,False,False,False
+multi_agent_orchestration,request_human_review,reroute,6,125,0.048,True,False,False
+multi_agent_orchestration,reroute,pause,9,125,0.072,True,False,True
+multi_agent_orchestration,reroute,proceed,50,125,0.4,True,True,False
+multi_agent_orchestration,reroute,reroute,66,125,0.528,False,False,False
+single_agent,pause,pause,125,125,1.0,False,False,False
+single_agent,proceed,proceed,125,125,1.0,False,False,False
+single_agent,request_human_review,pause,56,125,0.448,True,False,False
+single_agent,request_human_review,request_human_review,69,125,0.552,False,False,False
+single_agent,reroute,pause,25,125,0.2,True,False,True
+single_agent,reroute,proceed,14,125,0.112,True,True,False
+single_agent,reroute,reroute,86,125,0.688,False,False,False

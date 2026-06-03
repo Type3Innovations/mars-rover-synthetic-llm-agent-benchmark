@@ -1,0 +1,6 @@
+condition,total_errors,unknown
+baseline_full,133,133
+drop_telemetry,128,128
+drop_terrain,167,167
+drop_risk,121,121
+drop_mission_planner,158,158

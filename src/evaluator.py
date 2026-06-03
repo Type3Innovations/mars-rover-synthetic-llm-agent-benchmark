@@ -9,8 +9,31 @@ import random
 from collections import Counter, defaultdict
 from itertools import combinations
 from pathlib import Path
-from statistics import median
+from statistics import median, stdev
 from typing import Any, Callable
+
+
+STOPWORDS = {
+    "a",
+    "an",
+    "and",
+    "are",
+    "as",
+    "at",
+    "by",
+    "for",
+    "from",
+    "in",
+    "is",
+    "it",
+    "of",
+    "on",
+    "or",
+    "that",
+    "the",
+    "to",
+    "with",
+}
 
 
 def normalize_text(value: str) -> str:
@@ -134,6 +157,70 @@ def hazard_match_score(expected: list[str], detected: list[str]) -> float:
     return float(semantic_hazard_metrics(expected, detected)["recall"])
 
 
+def inclusion_hazard_coverage(expected: list[str], detected: list[str]) -> float:
+    """Coverage of canonical hazards regardless of extra detected hazards."""
+
+    return float(semantic_hazard_metrics(expected, detected)["recall"])
+
+
+def _semantic_unmatched_detected(expected: list[str], detected: list[str]) -> list[str]:
+    """Return detected hazards not semantically matched to expected hazards."""
+
+    expected_items = _deduplicate_preserving_order(expected)
+    unmatched_detected = _deduplicate_preserving_order(detected)
+    for expected_item in expected_items:
+        for index, detected_item in enumerate(unmatched_detected):
+            if expected_item in detected_item or detected_item in expected_item:
+                unmatched_detected.pop(index)
+                break
+    return unmatched_detected
+
+
+def _keyword_tokens(text: str) -> set[str]:
+    """Tokenize text to coarse keyword set for plausibility heuristics."""
+
+    normalized = normalize_text(text)
+    tokens = [token for token in normalized.replace("-", " ").split() if token]
+    return {
+        token
+        for token in tokens
+        if len(token) >= 4 and token not in STOPWORDS and token.isalpha()
+    }
+
+
+def noncanonical_hazard_breakdown(
+    *,
+    expected: list[str],
+    detected: list[str],
+    scenario: dict[str, Any],
+) -> dict[str, int]:
+    """Split unmatched hazards into plausible non-canonical vs spurious."""
+
+    unmatched_detected = _semantic_unmatched_detected(expected, detected)
+    context_text = " ".join(
+        [
+            str(scenario.get("terrain_description", "")),
+            str(scenario.get("mission_log", "")),
+            str(scenario.get("science_objective", "")),
+        ]
+    )
+    context_tokens = _keyword_tokens(context_text)
+
+    plausible_noncanonical_count = 0
+    spurious_hazard_count = 0
+    for hazard in unmatched_detected:
+        hazard_tokens = _keyword_tokens(hazard)
+        if hazard_tokens and hazard_tokens.intersection(context_tokens):
+            plausible_noncanonical_count += 1
+        else:
+            spurious_hazard_count += 1
+
+    return {
+        "plausible_noncanonical_hazard_count": plausible_noncanonical_count,
+        "spurious_hazard_count": spurious_hazard_count,
+    }
+
+
 def build_evaluation_record(
     *,
     scenario: dict[str, Any],
@@ -153,6 +240,12 @@ def build_evaluation_record(
 
     exact_metrics = exact_hazard_metrics(expected_hazards, detected_hazards)
     semantic_metrics = semantic_hazard_metrics(expected_hazards, detected_hazards)
+    coverage = inclusion_hazard_coverage(expected_hazards, detected_hazards)
+    noncanonical_counts = noncanonical_hazard_breakdown(
+        expected=expected_hazards,
+        detected=detected_hazards,
+        scenario=scenario,
+    )
 
     return {
         "scenario_id": scenario["scenario_id"],
@@ -173,6 +266,12 @@ def build_evaluation_record(
         "semantic_hazard_f1": semantic_metrics["f1"],
         "hazard_false_positive_count": semantic_metrics["false_positives"],
         "hazard_false_negative_count": semantic_metrics["false_negatives"],
+        "canonical_hazard_coverage": coverage,
+        "canonical_hazards_all_detected": coverage == 1.0,
+        "plausible_noncanonical_hazard_count": noncanonical_counts[
+            "plausible_noncanonical_hazard_count"
+        ],
+        "spurious_hazard_count": noncanonical_counts["spurious_hazard_count"],
         "latency_seconds": round(latency_seconds, 3),
         "token_usage": token_usage,
         "reasoning": model_output.get("reasoning", ""),
@@ -209,6 +308,10 @@ def save_results(records: list[dict[str, Any]], output_dir: Path) -> None:
         "semantic_hazard_f1",
         "hazard_false_positive_count",
         "hazard_false_negative_count",
+        "canonical_hazard_coverage",
+        "canonical_hazards_all_detected",
+        "plausible_noncanonical_hazard_count",
+        "spurious_hazard_count",
         "latency_seconds",
         "token_usage",
         "reasoning",
@@ -218,7 +321,7 @@ def save_results(records: list[dict[str, Any]], output_dir: Path) -> None:
         writer = csv.DictWriter(file, fieldnames=csv_fields)
         writer.writeheader()
         for record in records:
-            csv_record = record.copy()
+            csv_record = {field: record.get(field) for field in csv_fields}
             csv_record["expected_hazards"] = json.dumps(record["expected_hazards"])
             csv_record["detected_hazards"] = json.dumps(record["detected_hazards"])
             writer.writerow(csv_record)
@@ -288,6 +391,13 @@ def _prepare_record(record: dict[str, Any]) -> dict[str, Any]:
     normalized_record.setdefault(
         "hazard_false_negative_count", semantic_metrics["false_negatives"]
     )
+    normalized_record.setdefault("canonical_hazard_coverage", semantic_metrics["recall"])
+    normalized_record.setdefault(
+        "canonical_hazards_all_detected",
+        normalized_record.get("canonical_hazard_coverage", 0.0) == 1.0,
+    )
+    normalized_record.setdefault("plausible_noncanonical_hazard_count", 0)
+    normalized_record.setdefault("spurious_hazard_count", semantic_metrics["false_positives"])
     return normalized_record
 
 
@@ -351,6 +461,18 @@ def summarize_by_architecture(records: list[dict[str, Any]]) -> list[dict[str, A
                 "mean_hazard_false_negative_count": _safe_mean(
                     [record["hazard_false_negative_count"] for record in architecture_records]
                 ),
+                "mean_canonical_hazard_coverage": _safe_mean(
+                    [record["canonical_hazard_coverage"] for record in architecture_records]
+                ),
+                "mean_plausible_noncanonical_hazard_count": _safe_mean(
+                    [
+                        record["plausible_noncanonical_hazard_count"]
+                        for record in architecture_records
+                    ]
+                ),
+                "mean_spurious_hazard_count": _safe_mean(
+                    [record["spurious_hazard_count"] for record in architecture_records]
+                ),
                 "mean_latency_seconds": _safe_mean(
                     [record["latency_seconds"] for record in architecture_records]
                 ),
@@ -407,6 +529,18 @@ def summarize_by_scenario(records: list[dict[str, Any]]) -> list[dict[str, Any]]
                 "mean_hazard_false_negative_count": _safe_mean(
                     [record["hazard_false_negative_count"] for record in scenario_records]
                 ),
+                "mean_canonical_hazard_coverage": _safe_mean(
+                    [record["canonical_hazard_coverage"] for record in scenario_records]
+                ),
+                "mean_plausible_noncanonical_hazard_count": _safe_mean(
+                    [
+                        record["plausible_noncanonical_hazard_count"]
+                        for record in scenario_records
+                    ]
+                ),
+                "mean_spurious_hazard_count": _safe_mean(
+                    [record["spurious_hazard_count"] for record in scenario_records]
+                ),
                 "mean_latency_seconds": _safe_mean(
                     [record["latency_seconds"] for record in scenario_records]
                 ),
@@ -432,6 +566,44 @@ def decision_error_records(records: list[dict[str, Any]]) -> list[dict[str, Any]
     return normalized_records
 
 
+def decision_transition_analysis(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Summarize expected->recommended transitions to inspect error directionality."""
+
+    records = _prepare_records(records)
+    total_by_expected_architecture: dict[tuple[str, str], int] = defaultdict(int)
+    transition_counts: dict[tuple[str, str, str], int] = defaultdict(int)
+    for record in records:
+        architecture_type = record["architecture_type"]
+        expected_action = record.get("expected_action", "")
+        recommended_action = record.get("recommended_action", "")
+        total_by_expected_architecture[(architecture_type, expected_action)] += 1
+        transition_counts[(architecture_type, expected_action, recommended_action)] += 1
+
+    rows: list[dict[str, Any]] = []
+    for (architecture_type, expected_action, recommended_action), count in sorted(
+        transition_counts.items()
+    ):
+        total_expected = total_by_expected_architecture[(architecture_type, expected_action)]
+        rows.append(
+            {
+                "architecture_type": architecture_type,
+                "expected_action": expected_action,
+                "recommended_action": recommended_action,
+                "count": count,
+                "total_for_expected_action": total_expected,
+                "rate_within_expected_action": round(count / total_expected, 3)
+                if total_expected
+                else None,
+                "is_error_transition": expected_action != recommended_action,
+                "is_reroute_to_proceed": expected_action == "reroute"
+                and recommended_action == "proceed",
+                "is_reroute_to_pause": expected_action == "reroute"
+                and recommended_action == "pause",
+            }
+        )
+    return rows
+
+
 def _write_csv_records(
     *, file_path: Path, fieldnames: list[str], records: list[dict[str, Any]]
 ) -> None:
@@ -442,8 +614,8 @@ def _write_csv_records(
         writer.writeheader()
         for record in records:
             csv_record = {
-                key: json.dumps(value) if isinstance(value, list) else value
-                for key, value in record.items()
+                key: json.dumps(record[key]) if isinstance(record.get(key), list) else record.get(key)
+                for key in fieldnames
             }
             writer.writerow(csv_record)
 
@@ -483,7 +655,13 @@ def _exact_two_sided_binomial_p_value(successes: int, trials: int) -> float | No
     tail_probability = sum(
         math.comb(trials, index) for index in range(0, successes + 1)
     ) / (2**trials)
-    return round(min(1.0, 2 * tail_probability), 6)
+    return min(1.0, 2 * tail_probability)
+
+
+def _paired_differences(values_a: list[float], values_b: list[float]) -> list[float]:
+    """Return paired differences `values_b - values_a`."""
+
+    return [value_b - value_a for value_a, value_b in zip(values_a, values_b)]
 
 
 def _paired_sign_test(values_a: list[float], values_b: list[float]) -> dict[str, int | float | None]:
@@ -514,6 +692,104 @@ def _paired_sign_test(values_a: list[float], values_b: list[float]) -> dict[str,
     }
 
 
+def _rank_biserial_from_counts(positive_differences: int, negative_differences: int) -> float:
+    """Compute rank-biserial correlation from sign-test counts."""
+
+    non_tied = positive_differences + negative_differences
+    if non_tied == 0:
+        return 0.0
+    return round((positive_differences - negative_differences) / non_tied, 3)
+
+
+def _bootstrap_rank_biserial_ci(
+    values_a: list[float],
+    values_b: list[float],
+    *,
+    iterations: int = 2000,
+    seed: int = 42,
+) -> tuple[float, float]:
+    """Bootstrap a confidence interval for the rank-biserial effect size."""
+
+    differences = _paired_differences(values_a, values_b)
+    if not differences:
+        return (float("nan"), float("nan"))
+
+    generator = random.Random(seed)
+    bootstrapped_effects: list[float] = []
+    for _ in range(iterations):
+        sampled = [
+            differences[generator.randrange(len(differences))]
+            for _ in range(len(differences))
+        ]
+        positive_differences = sum(1 for difference in sampled if difference > 0)
+        negative_differences = sum(1 for difference in sampled if difference < 0)
+        bootstrapped_effects.append(
+            _rank_biserial_from_counts(positive_differences, negative_differences)
+        )
+    bootstrapped_effects.sort()
+    lower_index = int(0.025 * (iterations - 1))
+    upper_index = int(0.975 * (iterations - 1))
+    return (
+        round(bootstrapped_effects[lower_index], 3),
+        round(bootstrapped_effects[upper_index], 3),
+    )
+
+
+def _paired_cohens_dz(values_a: list[float], values_b: list[float]) -> float | None:
+    """Compute Cohen's dz from paired differences."""
+
+    differences = _paired_differences(values_a, values_b)
+    if len(differences) < 2:
+        return None
+    difference_mean = sum(differences) / len(differences)
+    difference_sd = stdev(differences)
+    if difference_sd == 0:
+        return 0.0 if difference_mean == 0 else None
+    return round(difference_mean / difference_sd, 3)
+
+
+def _bootstrap_cohens_dz_ci(
+    values_a: list[float],
+    values_b: list[float],
+    *,
+    iterations: int = 2000,
+    seed: int = 42,
+) -> tuple[float, float]:
+    """Bootstrap a confidence interval for Cohen's dz."""
+
+    differences = _paired_differences(values_a, values_b)
+    if len(differences) < 2:
+        return (float("nan"), float("nan"))
+
+    generator = random.Random(seed)
+    bootstrapped_effects: list[float] = []
+    for _ in range(iterations):
+        sampled = [
+            differences[generator.randrange(len(differences))]
+            for _ in range(len(differences))
+        ]
+        if len(sampled) < 2:
+            continue
+        mean_difference = sum(sampled) / len(sampled)
+        sample_sd = stdev(sampled)
+        if sample_sd == 0:
+            if mean_difference == 0:
+                bootstrapped_effects.append(0.0)
+            continue
+        bootstrapped_effects.append(round(mean_difference / sample_sd, 3))
+
+    if not bootstrapped_effects:
+        return (float("nan"), float("nan"))
+
+    bootstrapped_effects.sort()
+    lower_index = int(0.025 * (len(bootstrapped_effects) - 1))
+    upper_index = int(0.975 * (len(bootstrapped_effects) - 1))
+    return (
+        round(bootstrapped_effects[lower_index], 3),
+        round(bootstrapped_effects[upper_index], 3),
+    )
+
+
 def _mcnemar_exact_p_value(values_a: list[float], values_b: list[float]) -> dict[str, int | float | None]:
     """Compute exact McNemar statistics for paired binary outcomes."""
 
@@ -539,6 +815,51 @@ def _mcnemar_exact_p_value(values_a: list[float], values_b: list[float]) -> dict
         "discordant_pairs": discordant_pairs,
         "p_value": p_value,
     }
+
+
+def _holm_adjust_p_values(results: list[dict[str, Any]], *, p_key: str = "exact_p_value") -> None:
+    """Apply Holm-Bonferroni correction across all non-null p-values."""
+
+    p_values = [
+        (index, result[p_key])
+        for index, result in enumerate(results)
+        if result.get(p_key) is not None
+    ]
+    if not p_values:
+        return
+
+    sorted_p_values = sorted(p_values, key=lambda item: item[1])
+    total_tests = len(sorted_p_values)
+    running_max = 0.0
+    adjusted_values: dict[int, float] = {}
+
+    for rank, (index, p_value) in enumerate(sorted_p_values, start=1):
+        adjusted = min(1.0, (total_tests - rank + 1) * float(p_value))
+        running_max = max(running_max, adjusted)
+        adjusted_values[index] = running_max
+
+    for index, adjusted_value in adjusted_values.items():
+        results[index]["holm_adjusted_p_value"] = adjusted_value
+        results[index]["multiple_comparisons_method"] = "Holm-Bonferroni"
+
+
+def _hypotheses(
+    *,
+    metric_name: str,
+    architecture_a: str,
+    architecture_b: str,
+) -> tuple[str, str]:
+    """Generate readable null and alternative hypotheses for paired tests."""
+
+    null_hypothesis = (
+        f"There is no difference in {metric_name} between {architecture_b} and "
+        f"{architecture_a}; the paired difference is centered at zero."
+    )
+    alternative_hypothesis = (
+        f"There is a paired difference in {metric_name} between {architecture_b} "
+        f"and {architecture_a}."
+    )
+    return null_hypothesis, alternative_hypothesis
 
 
 def _bootstrap_mean_difference(
@@ -605,6 +926,9 @@ def significance_analysis(records: list[dict[str, Any]]) -> list[dict[str, Any]]
         ("decision_correct", True),
         ("exact_hazard_f1", True),
         ("semantic_hazard_f1", True),
+        ("canonical_hazard_coverage", True),
+        ("plausible_noncanonical_hazard_count", False),
+        ("spurious_hazard_count", False),
         ("hazard_false_positive_count", False),
         ("hazard_false_negative_count", False),
         ("latency_seconds", False),
@@ -625,27 +949,65 @@ def significance_analysis(records: list[dict[str, Any]]) -> list[dict[str, Any]]
         for metric_name, higher_is_better in metric_specs:
             values_a = [float(record_a.get(metric_name) or 0.0) for record_a, _ in paired_records]
             values_b = [float(record_b.get(metric_name) or 0.0) for _, record_b in paired_records]
+            differences = _paired_differences(values_a, values_b)
             mean_a = round(sum(values_a) / len(values_a), 3)
             mean_b = round(sum(values_b) / len(values_b), 3)
             difference_b_minus_a = round(mean_b - mean_a, 3)
             ci_lower, ci_upper = _bootstrap_mean_difference(values_a, values_b)
             sign_test = _paired_sign_test(values_a, values_b)
+            rank_biserial = _rank_biserial_from_counts(
+                sum(1 for difference in differences if difference > 0),
+                sum(1 for difference in differences if difference < 0),
+            )
+            rank_biserial_ci_low, rank_biserial_ci_high = _bootstrap_rank_biserial_ci(
+                values_a,
+                values_b,
+            )
+            cohen_dz = _paired_cohens_dz(values_a, values_b)
+            cohen_dz_ci_low, cohen_dz_ci_high = _bootstrap_cohens_dz_ci(values_a, values_b)
+            null_hypothesis, alternative_hypothesis = _hypotheses(
+                metric_name=metric_name,
+                architecture_a=architecture_a,
+                architecture_b=architecture_b,
+            )
+            test_name = (
+                "exact McNemar test" if metric_name == "decision_correct" else "exact paired sign test"
+            )
+            test_statistic_name = (
+                "discordant_pairs" if metric_name == "decision_correct" else "positive_differences"
+            )
+            test_statistic_value: int | None = (
+                None if metric_name == "decision_correct" else sign_test["positive_differences"]
+            )
 
             result = {
                 "architecture_a": architecture_a,
                 "architecture_b": architecture_b,
                 "metric": metric_name,
+                "test_name": test_name,
+                "test_statistic_name": test_statistic_name,
+                "test_statistic_value": test_statistic_value,
                 "paired_observations": len(paired_records),
                 "architecture_a_mean": mean_a,
                 "architecture_b_mean": mean_b,
                 "difference_b_minus_a": difference_b_minus_a,
                 "bootstrap_ci_low": ci_lower,
                 "bootstrap_ci_high": ci_upper,
+                "effect_size_name": "rank_biserial_correlation",
+                "effect_size": rank_biserial,
+                "effect_size_ci_low": rank_biserial_ci_low,
+                "effect_size_ci_high": rank_biserial_ci_high,
+                "cohens_dz": cohen_dz,
+                "cohens_dz_ci_low": cohen_dz_ci_low,
+                "cohens_dz_ci_high": cohen_dz_ci_high,
                 "sign_test_p_value": sign_test["p_value"],
+                "exact_p_value": sign_test["p_value"],
                 "positive_differences": sign_test["positive_differences"],
                 "negative_differences": sign_test["negative_differences"],
                 "ties": sign_test["ties"],
                 "higher_is_better": higher_is_better,
+                "null_hypothesis": null_hypothesis,
+                "alternative_hypothesis": alternative_hypothesis,
                 "favored_architecture": _favored_architecture(
                     architecture_a=architecture_a,
                     architecture_b=architecture_b,
@@ -658,6 +1020,8 @@ def significance_analysis(records: list[dict[str, Any]]) -> list[dict[str, Any]]
                 mcnemar = _mcnemar_exact_p_value(values_a, values_b)
                 result.update(
                     {
+                        "exact_p_value": mcnemar["p_value"],
+                        "test_statistic_value": mcnemar["discordant_pairs"],
                         "mcnemar_p_value": mcnemar["p_value"],
                         "a_correct_b_incorrect": mcnemar["a_correct_b_incorrect"],
                         "b_correct_a_incorrect": mcnemar["b_correct_a_incorrect"],
@@ -666,6 +1030,7 @@ def significance_analysis(records: list[dict[str, Any]]) -> list[dict[str, Any]]
                 )
 
             results.append(result)
+    _holm_adjust_p_values(results)
     return results
 
 
@@ -687,6 +1052,8 @@ def _build_paper_tables_markdown(
         "mean_exact_hazard_f1",
         "mean_semantic_hazard_f1",
         "mean_hazard_false_positive_count",
+        "mean_canonical_hazard_coverage",
+        "mean_spurious_hazard_count",
         "mean_latency_seconds",
         "mean_token_usage",
     ]
@@ -699,6 +1066,8 @@ def _build_paper_tables_markdown(
         "decision_accuracy",
         "mean_exact_hazard_f1",
         "mean_semantic_hazard_f1",
+        "mean_canonical_hazard_coverage",
+        "mean_spurious_hazard_count",
         "mean_latency_seconds",
     ]
     error_columns = [
@@ -715,11 +1084,23 @@ def _build_paper_tables_markdown(
         "architecture_a",
         "architecture_b",
         "metric",
+        "test_name",
+        "test_statistic_name",
+        "test_statistic_value",
         "architecture_a_mean",
         "architecture_b_mean",
         "difference_b_minus_a",
         "bootstrap_ci_low",
         "bootstrap_ci_high",
+        "effect_size_name",
+        "effect_size",
+        "effect_size_ci_low",
+        "effect_size_ci_high",
+        "cohens_dz",
+        "cohens_dz_ci_low",
+        "cohens_dz_ci_high",
+        "exact_p_value",
+        "holm_adjusted_p_value",
         "sign_test_p_value",
         "favored_architecture",
     ]
@@ -753,6 +1134,7 @@ def save_summary_statistics(records: list[dict[str, Any]], output_dir: Path) -> 
     scenario_summary = summarize_by_scenario(records)
     decision_errors = decision_error_records(records)
     significance_results = significance_analysis(records)
+    transition_summary = decision_transition_analysis(records)
 
     summary_json = output_dir / "summary_statistics.json"
     architecture_csv = output_dir / "summary_by_architecture.csv"
@@ -760,6 +1142,8 @@ def save_summary_statistics(records: list[dict[str, Any]], output_dir: Path) -> 
     errors_csv = output_dir / "decision_errors.csv"
     significance_json = output_dir / "significance_analysis.json"
     significance_csv = output_dir / "statistical_tests.csv"
+    transition_json = output_dir / "decision_transition_analysis.json"
+    transition_csv = output_dir / "decision_transition_analysis.csv"
     paper_tables_md = output_dir / "paper_tables.md"
 
     with summary_json.open("w", encoding="utf-8") as file:
@@ -769,6 +1153,7 @@ def save_summary_statistics(records: list[dict[str, Any]], output_dir: Path) -> 
                 "scenario_summary": scenario_summary,
                 "decision_errors": decision_errors,
                 "significance_analysis": significance_results,
+                "decision_transition_analysis": transition_summary,
             },
             file,
             indent=2,
@@ -776,6 +1161,9 @@ def save_summary_statistics(records: list[dict[str, Any]], output_dir: Path) -> 
 
     with significance_json.open("w", encoding="utf-8") as file:
         json.dump(significance_results, file, indent=2)
+
+    with transition_json.open("w", encoding="utf-8") as file:
+        json.dump(transition_summary, file, indent=2)
 
     if architecture_summary:
         _write_csv_records(
@@ -824,14 +1212,55 @@ def save_summary_statistics(records: list[dict[str, Any]], output_dir: Path) -> 
                 "architecture_a",
                 "architecture_b",
                 "metric",
+                "test_name",
+                "test_statistic_name",
+                "test_statistic_value",
                 "paired_observations",
                 "architecture_a_mean",
                 "architecture_b_mean",
                 "difference_b_minus_a",
                 "bootstrap_ci_low",
                 "bootstrap_ci_high",
+                "effect_size_name",
+                "effect_size",
+                "effect_size_ci_low",
+                "effect_size_ci_high",
+                "cohens_dz",
+                "cohens_dz_ci_low",
+                "cohens_dz_ci_high",
+                "exact_p_value",
+                "holm_adjusted_p_value",
                 "sign_test_p_value",
+                "positive_differences",
+                "negative_differences",
+                "ties",
+                "higher_is_better",
+                "null_hypothesis",
+                "alternative_hypothesis",
                 "favored_architecture",
+            ],
+            records=[],
+        )
+
+    if transition_summary:
+        _write_csv_records(
+            file_path=transition_csv,
+            fieldnames=list(transition_summary[0].keys()),
+            records=transition_summary,
+        )
+    else:
+        _write_csv_records(
+            file_path=transition_csv,
+            fieldnames=[
+                "architecture_type",
+                "expected_action",
+                "recommended_action",
+                "count",
+                "total_for_expected_action",
+                "rate_within_expected_action",
+                "is_error_transition",
+                "is_reroute_to_proceed",
+                "is_reroute_to_pause",
             ],
             records=[],
         )

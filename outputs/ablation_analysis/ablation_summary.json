@@ -1,0 +1,79 @@
+{
+  "baseline": {
+    "run_dir": "outputs/20260602-153013_gpt-4o_r5",
+    "n": 500,
+    "decision_accuracy": 0.734,
+    "exact_hazard_f1": 0.0431,
+    "canonical_coverage": 0.214,
+    "mean_latency_s": 11.8328,
+    "mean_tokens": 2273
+  },
+  "ablations": {
+    "drop_telemetry": {
+      "dropped_agent": "telemetry_agent",
+      "decision_accuracy": 0.744,
+      "accuracy_drop_pp": -1.0,
+      "exact_hazard_f1": 0.0423,
+      "canonical_coverage": 0.2223,
+      "mean_latency_s": 10.1775,
+      "mean_tokens": 1849,
+      "discordant_pairs": 45,
+      "p_value_vs_baseline": 0.5514843298025198
+    },
+    "drop_terrain": {
+      "dropped_agent": "terrain_agent",
+      "decision_accuracy": 0.666,
+      "accuracy_drop_pp": 6.8,
+      "exact_hazard_f1": 0.007,
+      "canonical_coverage": 0.1189,
+      "mean_latency_s": 10.7759,
+      "mean_tokens": 1863,
+      "discordant_pairs": 66,
+      "p_value_vs_baseline": 3.328235017032062e-05
+    },
+    "drop_risk": {
+      "dropped_agent": "risk_agent",
+      "decision_accuracy": 0.758,
+      "accuracy_drop_pp": -2.4,
+      "exact_hazard_f1": 0.065,
+      "canonical_coverage": 0.263,
+      "mean_latency_s": 8.9831,
+      "mean_tokens": 1717,
+      "discordant_pairs": 46,
+      "p_value_vs_baseline": 0.10380535550410741
+    },
+    "drop_mission_planner": {
+      "dropped_agent": "mission_planner_agent",
+      "decision_accuracy": 0.684,
+      "accuracy_drop_pp": 5.0,
+      "exact_hazard_f1": 0.0423,
+      "canonical_coverage": 0.1855,
+      "mean_latency_s": 9.4524,
+      "mean_tokens": 1828,
+      "discordant_pairs": 65,
+      "p_value_vs_baseline": 0.0026263768106840383
+    }
+  },
+  "agent_contribution_ranking": [
+    {
+      "rank": 1,
+      "agent": "terrain_agent",
+      "importance_score": 5.704
+    },
+    {
+      "rank": 2,
+      "agent": "mission_planner_agent",
+      "importance_score": 2.622
+    },
+    {
+      "rank": 3,
+      "agent": "telemetry_agent",
+      "importance_score": -0.529
+    },
+    {
+      "rank": 4,
+      "agent": "risk_agent",
+      "importance_score": -2.649
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+[
+  {
+    "architecture_type": "multi_agent_orchestration",
+    "expected_action": "pause",
+    "recommended_action": "pause",
+    "count": 124,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 0.992,
+    "is_error_transition": false,
+    "is_reroute_to_proceed": false,
+    "is_reroute_to_pause": false
+  },
+  {
+    "architecture_type": "multi_agent_orchestration",
+    "expected_action": "pause",
+    "recommended_action": "proceed",
+    "count": 1,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 0.008,
+    "is_error_transition": true,
+    "is_reroute_to_proceed": false,
+    "is_reroute_to_pause": false
+  },
+  {
+    "architecture_type": "multi_agent_orchestration",
+    "expected_action": "proceed",
+    "recommended_action": "proceed",
+    "count": 125,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 1.0,
+    "is_error_transition": false,
+    "is_reroute_to_proceed": false,
+    "is_reroute_to_pause": false
+  },
+  {
+    "architecture_type": "multi_agent_orchestration",
+    "expected_action": "request_human_review",
+    "recommended_action": "pause",
+    "count": 58,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 0.464,
+    "is_error_transition": true,
+    "is_reroute_to_proceed": false,
+    "is_reroute_to_pause": false
+  },
+  {
+    "architecture_type": "multi_agent_orchestration",
+    "expected_action": "request_human_review",
+    "recommended_action": "proceed",
+    "count": 3,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 0.024,
+    "is_error_transition": true,
+    "is_reroute_to_proceed": false,
+    "is_reroute_to_pause": false
+  },
+  {
+    "architecture_type": "multi_agent_orchestration",
+    "expected_action": "request_human_review",
+    "recommended_action": "request_human_review",
+    "count": 53,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 0.424,
+    "is_error_transition": false,
+    "is_reroute_to_proceed": false,
+    "is_reroute_to_pause": false
+  },
+  {
+    "architecture_type": "multi_agent_orchestration",
+    "expected_action": "request_human_review",
+    "recommended_action": "reroute",
+    "count": 11,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 0.088,
+    "is_error_transition": true,
+    "is_reroute_to_proceed": false,
+    "is_reroute_to_pause": false
+  },
+  {
+    "architecture_type": "multi_agent_orchestration",
+    "expected_action": "reroute",
+    "recommended_action": "pause",
+    "count": 8,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 0.064,
+    "is_error_transition": true,
+    "is_reroute_to_proceed": false,
+    "is_reroute_to_pause": true
+  },
+  {
+    "architecture_type": "multi_agent_orchestration",
+    "expected_action": "reroute",
+    "recommended_action": "proceed",
+    "count": 40,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 0.32,
+    "is_error_transition": true,
+    "is_reroute_to_proceed": true,
+    "is_reroute_to_pause": false
+  },
+  {
+    "architecture_type": "multi_agent_orchestration",
+    "expected_action": "reroute",
+    "recommended_action": "reroute",
+    "count": 77,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 0.616,
+    "is_error_transition": false,
+    "is_reroute_to_proceed": false,
+    "is_reroute_to_pause": false
+  }
+]

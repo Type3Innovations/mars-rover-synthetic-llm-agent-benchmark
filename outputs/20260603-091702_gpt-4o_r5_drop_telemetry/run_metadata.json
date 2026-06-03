@@ -1,0 +1,18 @@
+{
+  "created_at_utc": "2026-06-03T14:41:51Z",
+  "model": "gpt-4o",
+  "repeats": 5,
+  "scenario_count": 100,
+  "scenario_limit": null,
+  "versioned_output": true,
+  "run_tag": "drop_telemetry",
+  "ablation": "drop_telemetry",
+  "ablation_dropped_agent": "telemetry_agent",
+  "python_version": "3.9.6",
+  "benchmark_sampling": {
+    "temperature": 0,
+    "response_format": "json_schema",
+    "seed": null
+  },
+  "git_commit": "533c929"
+}

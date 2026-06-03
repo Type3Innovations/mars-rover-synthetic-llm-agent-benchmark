@@ -103,6 +103,8 @@ The benchmark writes:
 - `outputs/decision_errors.csv`
 - `outputs/significance_analysis.json`
 - `outputs/statistical_tests.csv`
+- `outputs/decision_transition_analysis.json`
+- `outputs/decision_transition_analysis.csv`
 - `outputs/paper_tables.md`
 
 For versioned runs, these files are written into a run-specific folder under `outputs/` and include:
@@ -127,6 +129,21 @@ Pipeline B, `multi_agent_orchestration`, runs four specialist agents:
 - `mission_planner_agent`
 
 An `orchestrator_agent` then combines their outputs into the same final decision format used by the single-agent pipeline.
+
+## Agent Prompt Guide
+
+The model-facing prompts are intentionally limited to operational scenario details. The scoring-only fields `expected_action` and `expected_hazards` are not included in any prompt and are used only by the evaluator after the model responds.
+
+Plain-language summary of what each agent is asked to do:
+
+- `single_agent`: Review the complete mission situation, weigh rover safety against mission progress, and choose one final action.
+- `telemetry_agent`: Focus on rover health signals such as battery, wheel temperature, radiation, and communications delays to identify health-related risks.
+- `terrain_agent`: Focus on terrain slope, terrain description, and mission context to identify mobility, traction, obstacle, and wheel-damage risks.
+- `risk_agent`: Combine the main operational signals into one overall safety assessment and highlight the highest-priority hazards.
+- `mission_planner_agent`: Consider the science objective, timing, battery state, and communications delay to judge whether the mission should continue or pause.
+- `orchestrator_agent`: Read the specialist summaries, resolve disagreements, and produce the safest final recommendation.
+
+In short: the specialist agents inspect different slices of the scenario, and the orchestrator merges those views into one decision.
 
 ## Evaluation Fields
 
@@ -157,6 +174,13 @@ Each pipeline run logs:
 
 `hazard_match_score` remains as a backward-compatible semantic recall metric. The benchmark now also reports stricter exact-match and semantic precision/recall/F1 hazard metrics, plus false-positive and false-negative counts for over-detection analysis.
 
+The evaluator also reports:
+
+- `canonical_hazard_coverage`: inclusion-based canonical hazard coverage (credit is not reduced by extra detected hazards)
+- `plausible_noncanonical_hazard_count`: unmatched hazards that still align with scenario context keywords
+- `spurious_hazard_count`: unmatched hazards without clear scenario-context support
+- decision-transition summaries (for patterns like `reroute -> proceed` vs `reroute -> pause`)
+
 ## Publication Workflow
 
 - Use repeated runs (`--repeats N`) to measure consistency and operational variance.
@@ -173,7 +197,14 @@ Tip: if you need legacy behavior and want to overwrite a fixed folder, pass `--n
 
 - Pairwise comparisons are computed across matched `(scenario_id, run_id, model)` observations.
 - Decision correctness includes an exact McNemar test summary.
-- Continuous and score-based metrics include paired sign tests and bootstrap confidence intervals for mean differences.
+- Continuous and score-based metrics include exact paired sign tests, rank-biserial effect sizes, Cohen's $d_z$, and bootstrap confidence intervals.
+- Multiple comparisons are corrected with Holm-Bonferroni across all pairwise metric tests.
+- `outputs/statistical_tests.csv` and `outputs/significance_analysis.json` now include the test name, exact p-value, adjusted p-value, effect sizes, and hypothesis text used for each comparison.
+
+## Reproducibility Notes
+
+- Each run records the model name, repeat count, scenario limit, run tag, timestamp, Python version, git commit, and the fixed sampling settings used by the OpenAI call path.
+- The model-facing prompts exclude `expected_action` and `expected_hazards`; those fields are reserved for scoring only.
 
 ## Notes for Future Extensions
 

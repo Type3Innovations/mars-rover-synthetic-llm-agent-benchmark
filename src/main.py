@@ -4,12 +4,14 @@ from __future__ import annotations
 
 import argparse
 import json
+import platform
 import time
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Callable
+import subprocess
 
-from agents import multi_agent_orchestration, single_agent
+from agents import ABLATION_AGENTS, multi_agent_orchestration, single_agent
 from evaluator import build_evaluation_record, save_results, save_summary_statistics
 from openai_client import LLMResult, get_model_name
 
@@ -90,6 +92,17 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help="Optional short tag appended to versioned run folder names (for notes like baseline or ablation).",
     )
+    parser.add_argument(
+        "--ablation",
+        type=str,
+        default=None,
+        choices=list(ABLATION_AGENTS.keys()),
+        help=(
+            "Ablation mode: omit one specialist from the multi-agent pipeline. "
+            "Single-agent runs are skipped automatically. "
+            f"Choices: {', '.join(ABLATION_AGENTS.keys())}"
+        ),
+    )
     args = parser.parse_args()
     if args.repeats < 1:
         parser.error("--repeats must be at least 1")
@@ -105,11 +118,15 @@ def run_pipeline(
     pipeline: Callable[[dict[str, Any], str | None], LLMResult],
     model: str,
     run_id: int,
+    ablation: str | None = None,
 ) -> dict[str, Any]:
     """Run one pipeline for one scenario and return an evaluation record."""
 
     start_time = time.perf_counter()
-    result = pipeline(scenario, model)
+    if ablation and architecture_type == "multi_agent_orchestration":
+        result = pipeline(scenario, model, ablation=ablation)
+    else:
+        result = pipeline(scenario, model)
     latency_seconds = time.perf_counter() - start_time
     return build_evaluation_record(
         scenario=scenario,
@@ -145,8 +162,22 @@ def save_run_metadata(
     scenario_limit: int | None,
     versioned_output: bool,
     run_tag: str | None,
+    ablation: str | None = None,
 ) -> None:
     """Write metadata to make run provenance explicit for publication workflows."""
+
+    try:
+        git_commit = (
+            subprocess.check_output(
+                ["git", "rev-parse", "--short", "HEAD"],
+                cwd=PROJECT_ROOT,
+                text=True,
+                stderr=subprocess.DEVNULL,
+            )
+            .strip()
+        )
+    except Exception:
+        git_commit = None
 
     metadata = {
         "created_at_utc": datetime.utcnow().isoformat(timespec="seconds") + "Z",
@@ -156,6 +187,15 @@ def save_run_metadata(
         "scenario_limit": scenario_limit,
         "versioned_output": versioned_output,
         "run_tag": run_tag,
+        "ablation": ablation,
+        "ablation_dropped_agent": ABLATION_AGENTS.get(ablation) if ablation else None,
+        "python_version": platform.python_version(),
+        "benchmark_sampling": {
+            "temperature": 0,
+            "response_format": "json_schema",
+            "seed": None,
+        },
+        "git_commit": git_commit,
     }
     metadata_path = output_dir / "run_metadata.json"
     metadata_path.write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
@@ -170,28 +210,36 @@ def main() -> None:
         scenarios = scenarios[: args.scenario_limit]
 
     model = args.model or get_model_name()
+    ablation = args.ablation or None
+    # Auto-set run_tag from ablation if no explicit tag given
+    if ablation and not args.run_tag:
+        args.run_tag = ablation
     output_dir = resolve_output_dir(args, model)
     records: list[dict[str, Any]] = []
 
     print(f"Running Mars rover benchmark with model: {model}")
     print(f"Loaded {len(scenarios)} scenarios")
     print(f"Repeats per condition: {args.repeats}")
+    if ablation:
+        print(f"Ablation mode: dropping {ABLATION_AGENTS[ablation]} from multi-agent pipeline")
     print(f"Writing outputs to: {output_dir}")
 
     for run_id in range(1, args.repeats + 1):
         print(f"Starting repeat {run_id}/{args.repeats}")
         for scenario in scenarios:
             scenario_id = scenario["scenario_id"]
-            print(f"Evaluating {scenario_id} with single-agent pipeline (run {run_id})")
-            records.append(
-                run_pipeline(
-                    scenario=scenario,
-                    architecture_type="single_agent",
-                    pipeline=single_agent,
-                    model=model,
-                    run_id=run_id,
+
+            if not ablation:
+                print(f"Evaluating {scenario_id} with single-agent pipeline (run {run_id})")
+                records.append(
+                    run_pipeline(
+                        scenario=scenario,
+                        architecture_type="single_agent",
+                        pipeline=single_agent,
+                        model=model,
+                        run_id=run_id,
+                    )
                 )
-            )
 
             print(
                 "Evaluating "
@@ -204,6 +252,7 @@ def main() -> None:
                     pipeline=multi_agent_orchestration,
                     model=model,
                     run_id=run_id,
+                    ablation=ablation,
                 )
             )
 
@@ -217,6 +266,7 @@ def main() -> None:
         scenario_limit=args.scenario_limit,
         versioned_output=args.versioned_output,
         run_tag=args.run_tag,
+        ablation=ablation,
     )
     print(f"Saved {len(records)} records to {output_dir / 'results.csv'}")
     print(f"Saved {len(records)} records to {output_dir / 'results.json'}")

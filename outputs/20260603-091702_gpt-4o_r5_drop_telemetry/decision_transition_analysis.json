@@ -1,0 +1,90 @@
+[
+  {
+    "architecture_type": "multi_agent_orchestration",
+    "expected_action": "pause",
+    "recommended_action": "pause",
+    "count": 125,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 1.0,
+    "is_error_transition": false,
+    "is_reroute_to_proceed": false,
+    "is_reroute_to_pause": false
+  },
+  {
+    "architecture_type": "multi_agent_orchestration",
+    "expected_action": "proceed",
+    "recommended_action": "proceed",
+    "count": 125,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 1.0,
+    "is_error_transition": false,
+    "is_reroute_to_proceed": false,
+    "is_reroute_to_pause": false
+  },
+  {
+    "architecture_type": "multi_agent_orchestration",
+    "expected_action": "request_human_review",
+    "recommended_action": "pause",
+    "count": 61,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 0.488,
+    "is_error_transition": true,
+    "is_reroute_to_proceed": false,
+    "is_reroute_to_pause": false
+  },
+  {
+    "architecture_type": "multi_agent_orchestration",
+    "expected_action": "request_human_review",
+    "recommended_action": "request_human_review",
+    "count": 50,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 0.4,
+    "is_error_transition": false,
+    "is_reroute_to_proceed": false,
+    "is_reroute_to_pause": false
+  },
+  {
+    "architecture_type": "multi_agent_orchestration",
+    "expected_action": "request_human_review",
+    "recommended_action": "reroute",
+    "count": 14,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 0.112,
+    "is_error_transition": true,
+    "is_reroute_to_proceed": false,
+    "is_reroute_to_pause": false
+  },
+  {
+    "architecture_type": "multi_agent_orchestration",
+    "expected_action": "reroute",
+    "recommended_action": "pause",
+    "count": 9,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 0.072,
+    "is_error_transition": true,
+    "is_reroute_to_proceed": false,
+    "is_reroute_to_pause": true
+  },
+  {
+    "architecture_type": "multi_agent_orchestration",
+    "expected_action": "reroute",
+    "recommended_action": "proceed",
+    "count": 44,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 0.352,
+    "is_error_transition": true,
+    "is_reroute_to_proceed": true,
+    "is_reroute_to_pause": false
+  },
+  {
+    "architecture_type": "multi_agent_orchestration",
+    "expected_action": "reroute",
+    "recommended_action": "reroute",
+    "count": 72,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 0.576,
+    "is_error_transition": false,
+    "is_reroute_to_proceed": false,
+    "is_reroute_to_pause": false
+  }
+]

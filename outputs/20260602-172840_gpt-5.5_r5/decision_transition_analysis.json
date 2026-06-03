@@ -1,0 +1,156 @@
+[
+  {
+    "architecture_type": "multi_agent_orchestration",
+    "expected_action": "pause",
+    "recommended_action": "pause",
+    "count": 122,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 0.976,
+    "is_error_transition": false,
+    "is_reroute_to_proceed": false,
+    "is_reroute_to_pause": false
+  },
+  {
+    "architecture_type": "multi_agent_orchestration",
+    "expected_action": "pause",
+    "recommended_action": "request_human_review",
+    "count": 3,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 0.024,
+    "is_error_transition": true,
+    "is_reroute_to_proceed": false,
+    "is_reroute_to_pause": false
+  },
+  {
+    "architecture_type": "multi_agent_orchestration",
+    "expected_action": "proceed",
+    "recommended_action": "proceed",
+    "count": 125,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 1.0,
+    "is_error_transition": false,
+    "is_reroute_to_proceed": false,
+    "is_reroute_to_pause": false
+  },
+  {
+    "architecture_type": "multi_agent_orchestration",
+    "expected_action": "request_human_review",
+    "recommended_action": "request_human_review",
+    "count": 114,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 0.912,
+    "is_error_transition": false,
+    "is_reroute_to_proceed": false,
+    "is_reroute_to_pause": false
+  },
+  {
+    "architecture_type": "multi_agent_orchestration",
+    "expected_action": "request_human_review",
+    "recommended_action": "reroute",
+    "count": 11,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 0.088,
+    "is_error_transition": true,
+    "is_reroute_to_proceed": false,
+    "is_reroute_to_pause": false
+  },
+  {
+    "architecture_type": "multi_agent_orchestration",
+    "expected_action": "reroute",
+    "recommended_action": "pause",
+    "count": 4,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 0.032,
+    "is_error_transition": true,
+    "is_reroute_to_proceed": false,
+    "is_reroute_to_pause": true
+  },
+  {
+    "architecture_type": "multi_agent_orchestration",
+    "expected_action": "reroute",
+    "recommended_action": "proceed",
+    "count": 13,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 0.104,
+    "is_error_transition": true,
+    "is_reroute_to_proceed": true,
+    "is_reroute_to_pause": false
+  },
+  {
+    "architecture_type": "multi_agent_orchestration",
+    "expected_action": "reroute",
+    "recommended_action": "request_human_review",
+    "count": 2,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 0.016,
+    "is_error_transition": true,
+    "is_reroute_to_proceed": false,
+    "is_reroute_to_pause": false
+  },
+  {
+    "architecture_type": "multi_agent_orchestration",
+    "expected_action": "reroute",
+    "recommended_action": "reroute",
+    "count": 106,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 0.848,
+    "is_error_transition": false,
+    "is_reroute_to_proceed": false,
+    "is_reroute_to_pause": false
+  },
+  {
+    "architecture_type": "single_agent",
+    "expected_action": "pause",
+    "recommended_action": "pause",
+    "count": 125,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 1.0,
+    "is_error_transition": false,
+    "is_reroute_to_proceed": false,
+    "is_reroute_to_pause": false
+  },
+  {
+    "architecture_type": "single_agent",
+    "expected_action": "proceed",
+    "recommended_action": "proceed",
+    "count": 125,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 1.0,
+    "is_error_transition": false,
+    "is_reroute_to_proceed": false,
+    "is_reroute_to_pause": false
+  },
+  {
+    "architecture_type": "single_agent",
+    "expected_action": "request_human_review",
+    "recommended_action": "request_human_review",
+    "count": 112,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 0.896,
+    "is_error_transition": false,
+    "is_reroute_to_proceed": false,
+    "is_reroute_to_pause": false
+  },
+  {
+    "architecture_type": "single_agent",
+    "expected_action": "request_human_review",
+    "recommended_action": "reroute",
+    "count": 13,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 0.104,
+    "is_error_transition": true,
+    "is_reroute_to_proceed": false,
+    "is_reroute_to_pause": false
+  },
+  {
+    "architecture_type": "single_agent",
+    "expected_action": "reroute",
+    "recommended_action": "reroute",
+    "count": 125,
+    "total_for_expected_action": 125,
+    "rate_within_expected_action": 1.0,
+    "is_error_transition": false,
+    "is_reroute_to_proceed": false,
+    "is_reroute_to_pause": false
+  }
+]

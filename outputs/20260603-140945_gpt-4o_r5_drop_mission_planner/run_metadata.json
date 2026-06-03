@@ -1,0 +1,18 @@
+{
+  "created_at_utc": "2026-06-03T19:28:31Z",
+  "model": "gpt-4o",
+  "repeats": 5,
+  "scenario_count": 100,
+  "scenario_limit": null,
+  "versioned_output": true,
+  "run_tag": "drop_mission_planner",
+  "ablation": "drop_mission_planner",
+  "ablation_dropped_agent": "mission_planner_agent",
+  "python_version": "3.9.6",
+  "benchmark_sampling": {
+    "temperature": 0,
+    "response_format": "json_schema",
+    "seed": null
+  },
+  "git_commit": "533c929"
+}

@@ -1,0 +1,5 @@
+contribution_rank,dropped_agent,ablation_condition,importance_score,accuracy_drop_pp,exact_f1_drop,canonical_coverage_drop_pp,confidence_drop,false_positive_change,false_negative_change,latency_reduction_s,token_reduction
+1,terrain_agent,drop_terrain,5.704,6.8,0.0361,9.51,-0.0003,-1.25,0.242,1.0569,410
+2,mission_planner_agent,drop_mission_planner,2.622,5.0,0.0008,2.85,0.0028,-0.526,0.074,2.3804,445
+3,telemetry_agent,drop_telemetry,-0.529,-1.0,0.0008,-0.83,0.0013,0.154,-0.026,1.6552,424
+4,risk_agent,drop_risk,-2.649,-2.4,-0.0219,-4.9,-0.0052,-1.512,-0.148,2.8496,556
