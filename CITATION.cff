@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this benchmark, please cite it using the metadata below."
+title: "Mars Rover Synthetic LLM Agent Benchmark"
+type: software
+authors:
+  - family-names: "Sanabria"
+    given-names: "Daniel"
+    affiliation: "Type 3 Innovations"
+repository-code: "https://github.com/Type3Innovations/mars-rover-synthetic-llm-agent-benchmark"
+url: "https://github.com/Type3Innovations/mars-rover-synthetic-llm-agent-benchmark"
+abstract: >-
+  Reproducible benchmark comparing single-agent and multi-agent orchestration
+  architectures for synthetic Mars rover decision-support scenarios.
+keywords:
+  - llm
+  - multi-agent
+  - benchmarking
+  - mars rover
+  - decision support
+license: "MIT"
+version: "v1.0.0-camera-ready"
+date-released: "2026-06-04"

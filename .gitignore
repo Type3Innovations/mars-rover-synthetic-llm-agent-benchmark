@@ -8,3 +8,8 @@ __pycache__/
 # Ignore generated benchmark outputs but keep folder placeholder
 outputs/**
 !outputs/.gitkeep
+
+# Local-only generated/rendered files (not source-of-truth)
+README.html
+docs/publication_study_plan.html
+scripts/md_to_html_batch.py

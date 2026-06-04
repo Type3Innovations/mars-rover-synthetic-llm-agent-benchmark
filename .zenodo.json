@@ -1,0 +1,27 @@
+{
+  "title": "Mars Rover Synthetic LLM Agent Benchmark",
+  "description": "Reproducible benchmark comparing single-agent and multi-agent orchestration architectures for synthetic Mars rover decision-support scenarios.",
+  "creators": [
+    {
+      "name": "Sanabria, Daniel",
+      "affiliation": "Type 3 Innovations"
+    }
+  ],
+  "upload_type": "software",
+  "license": "MIT",
+  "keywords": [
+    "llm",
+    "multi-agent",
+    "benchmark",
+    "mars rover",
+    "decision support"
+  ],
+  "access_right": "open",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/Type3Innovations/mars-rover-synthetic-llm-agent-benchmark",
+      "relation": "isSupplementTo",
+      "resource_type": "software"
+    }
+  ]
+}

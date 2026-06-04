@@ -212,4 +212,11 @@ Tip: if you need legacy behavior and want to overwrite a fixed folder, pass `--n
 - Add stricter semantic hazard matching beyond substring overlap.
 - Add a Streamlit UI for browsing scenario-level outputs.
 - Compare multiple model backends under the same benchmark harness.
-# Mars_Synthetic_Dataset_SingleVsMulti
+
+## Citation and DOI
+
+This repository includes citation metadata for archival and reproducibility.
+
+### Citing this repository
+
+Use the citation metadata in `CITATION.cff`. If a Zenodo DOI is minted for a release, cite the version DOI corresponding to the archived release used in your manuscript.
