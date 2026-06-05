@@ -217,6 +217,8 @@ Tip: if you need legacy behavior and want to overwrite a fixed folder, pass `--n
 
 This repository includes citation metadata for archival and reproducibility.
 
+Zenodo DOI for release `v1.0.0`: https://doi.org/10.5281/zenodo.20549631
+
 ### Citing this repository
 
-Use the citation metadata in `CITATION.cff`. If a Zenodo DOI is minted for a release, cite the version DOI corresponding to the archived release used in your manuscript.
+Use the citation metadata in `CITATION.cff` and cite the version DOI corresponding to the archived release used in your manuscript.
